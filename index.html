@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWHMUN | Greenwood High Model United Nations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #000000; 
+            --surface-color: rgba(15, 15, 15, 0.6);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            
+            /* GWHMUN Custom Wreath Gradient */
+            --gradient-glow: linear-gradient(135deg, #3b82f6, #8b5cf6, #ef4444, #f97316, #f59e0b);
+            --accent-gold: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.1)); }
+            50% { filter: drop-shadow(0 0 40px rgba(245, 158, 11, 0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.1)); }
+        }
+
+        .animate-up {
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+
+        /* --- Glass Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-link {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            padding-right: 40px;
+        }
+
+        .nav-logo {
+            height: 50px;
+            animation: pulseGlow 4s infinite;
+        }
+
+        .nav-links {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+        }
+
+        /* --- Cinematic Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: url('./images/MainLogo.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.65;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-text {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 9vw;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            width: 100%;
+        }
+
+        .gradient-text {
+            background: var(--gradient-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 50px;
+        }
+
+        .btn-glow {
+            position: relative;
+            display: inline-block;
+            padding: 16px 40px;
+            color: var(--text-main);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradient-glow);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .btn-glow:hover {
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .btn-glow:hover::before {
+            opacity: 1;
+        }
+
+        /* --- Sections & Typography --- */
+        .section {
+            padding: 120px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* --- Secretariat Glass Cards --- */
+        .glass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 3px;
+            background: var(--gradient-glow);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .glass-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .glass-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .glass-card h4 {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .glass-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* --- IMMERSIVE COMMITTEE GRID --- */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .com-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            height: 280px; 
+            text-align: center;
+            border-radius: 12px;
+            background: #000000; 
+            overflow: hidden; 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .com-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: 1;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .com-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.95) 100%);
+            z-index: 2;
+        }
+
+        .com-card h3 {
+            position: relative;
+            z-index: 3; 
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            padding: 0 20px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: color 0.3s ease;
+        }
+
+        .com-card p {
+            position: relative;
+            z-index: 3;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            padding: 0 20px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .com-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);
+        }
+
+        .com-card:hover .com-logo {
+            transform: scale(1.08); 
+        }
+
+        .com-card:hover h3 {
+            color: var(--accent-gold);
+        }
+
+        .com-card:hover p {
+            opacity: 1;
+            color: var(--text-main);
+        }
+
+        /* --- Placeholder Content Blocks --- */
+        .placeholder-box {
+            background: var(--surface-color);
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 60px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* --- Contact Us Section --- */
+        .contact-card {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: var(--accent-gold);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--text-main);
+        }
+        
+        .contact-link:hover svg {
+            transform: scale(1.1);
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        footer img {
+            height: 50px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        footer img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            .logo-link {
+                padding-right: 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero::before { width: 100%; opacity: 0.08; } 
+            .section-title { font-size: 2.5rem; }
+            .contact-card { padding: 40px 20px; }
+            .contact-link { font-size: 1rem; }
+            .map-wrapper { height: 300px; }
+        }
+    
+        /* === GALLERY CAROUSEL === */
+        .gallery-section {
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+            padding-bottom: 100px;
+        }
+        .gallery-swiper {
+            width: 100%;
+            padding-bottom: 60px !important;
+        }
+        .gallery-swiper .swiper-slide {
+            border-radius: 16px;
+            overflow: hidden;
+            height: 500px;
+            opacity: 0.5;
+            transform: scale(0.92);
+            transition: all 0.5s ease;
+        }
+        .gallery-swiper .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .gallery-swiper .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-swiper .swiper-button-prev,
+        .gallery-swiper .swiper-button-next {
+            color: var(--accent-gold);
+            background: rgba(0,0,0,0.5);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .gallery-swiper .swiper-button-prev::after,
+        .gallery-swiper .swiper-button-next::after {
+            font-size: 18px;
+            font-weight: 900;
+        }
+        .gallery-swiper .swiper-button-prev:hover,
+        .gallery-swiper .swiper-button-next:hover {
+            background: rgba(245,158,11,0.2);
+            border-color: var(--accent-gold);
+        }
+        .gallery-swiper .swiper-pagination-bullet {
+            background: rgba(255,255,255,0.3);
+            opacity: 1;
+            width: 8px;
+            height: 8px;
+            transition: all 0.3s ease;
+        }
+        .gallery-swiper .swiper-pagination-bullet-active {
+            background: var(--accent-gold);
+            width: 24px;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            .gallery-swiper .swiper-slide {
+                height: 260px;
+                opacity: 1;
+                transform: scale(1);
+                border-radius: 10px;
+            }
+        }
+
+        </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#home" class="logo-link">
+                <img src="./images/MainLogo.png" alt="GWHMUN" class="nav-logo" onerror="this.style.display='none';">
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#committees">Committees</a>
+                <a href="#resources">Resources</a>
+                <a href="#registrations">Registrations</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="container">
+            <div class="animate-up delay-1">
+                <span class="intro-text">Introducing</span>
+                <h1>GWH MUN 2026</h1>
+            </div>
+            <p class="animate-up delay-2">August 28th - 30th, 2026</p>
+            <div class="animate-up delay-3">
+                <a href="#registrations" class="btn-glow">Register Now</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="secretariat" class="section">
+        <div class="container">
+            <h2 class="section-title gradient-text">Welcome Address</h2>
+            <p class="section-subtitle">A message from the executive board leading the 2026 diplomatic summit.</p>
+            
+            <div class="glass-grid">
+                <div class="glass-card">
+                    <h4>Secretary General</h4>
+                    <h3>Sparsh Bhowmick</h3>
+                    <p>Whether this is your very first conference or one of many, I hope that this edition of GWHMUN becomes an unforgettable step in your journey toward becoming better global citizens. You don't have to be perfect, you just have to be present, be kind, be bold, and most of all – have fun.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h4>Director General</h4>
+                    <h3>Garvit Shah</h3>
+                    <p>Model UN taught me that diplomacy is as much about understanding as it is about speaking. Leadership often begins in silence yet leads to loud echoes across our reality. Your presence, your voice, and your perspective are what give GWHMUN its meaning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="committees" class="section" style="background-color: #050505;">
+        <div class="container">
+            <h2 class="section-title gradient-text">Committees</h2>
+            <p class="section-subtitle">Find your Committee!</p>
+            
+            <div class="committee-grid">
+                
+                <a href="#" class="com-card">
+                    <img src="./images/DISEC.png" alt="DISEC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>DISEC</h3>
+                 
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/UNGA.png" alt="UNGA Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>UNGA</h3>
+                  
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/CCC.png" alt="CCC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>CCC</h3>
+                    
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/IPC.png" alt="IPC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>IPC</h3>
+                   
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/AIPPM.png" alt="AIPPM Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>AIPPM</h3>
+                    
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/UNSC.png" alt="UNSC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>UNSC</h3>
+                   
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/UNHRC.png" alt="UNHRC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>UNHRC</h3>
+                    
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/UNODC.png" alt="UNODC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>UNODC</h3>
+                   
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/ICJ.png" alt="ICJ Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>ICJ</h3>
+                   
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/UNEP.png" alt="UNEP Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>UNEP</h3>
+                    
+                </a>
+                
+                <a href="#" class="com-card">
+                    <img src="./images/ECOSOC.png" alt="ECOSOC Logo" class="com-logo" onerror="this.style.display='none';">
+                    <h3>ECOSOC</h3>
+                   
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Carousel Section -->
+    <section id="gallery" class="section gallery-section">
+        <div class="container">
+            <h2 class="section-title gradient-text">Gallery</h2>
+            <p class="section-subtitle">Moments from GWHMUN</p>
+        </div>
+        <div class="swiper gallery-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./images/IMG_9627.JPG" alt="GWHMUN Gallery 1" loading="lazy"></div>
+                <div class="swiper-slide"><img src="./images/DSC03070.JPG" alt="GWHMUN Gallery 2" loading="lazy"></div>
+                <div class="swiper-slide"><img src="./images/_DSC0029.JPG" alt="GWHMUN Gallery 3" loading="lazy"></div>
+                <div class="swiper-slide"><img src="./images/IMG_5428.JPG" alt="GWHMUN Gallery 4" loading="lazy"></div>
+                <div class="swiper-slide"><img src="./images/IMG_9753.JPG" alt="GWHMUN Gallery 5" loading="lazy"></div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="glass-card contact-card">
+                <h2 class="section-title gradient-text">Contact Us</h2>
+                
+                <div class="contact-details">
+                    <a href="mailto:secretariat@gwhmun.com" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        secretariat@gwhmun.com
+                    </a>
+                    
+                    <a href="https://instagram.com/gwhmun" target="_blank" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        @gwhmun
+                    </a>
+                </div>
+
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Greenwood+High+International+School,+Sarjapur&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <img src="./images/MainLogo.png" alt="GWHMUN Crest" onerror="this.style.display='none';">
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">© 2026 Greenwood High MUN</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.glass-card, .com-card, .placeholder-box').forEach((el) => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            observer.observe(el);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const gallerySwiper = new Swiper('.gallery-swiper', {
+            loop: true,
+            autoplay: { delay: 3500, disableOnInteraction: false },
+            slidesPerView: 1,
+            spaceBetween: 0,
+            centeredSlides: true,
+            breakpoints: {
+                768: { slidesPerView: 1.4, spaceBetween: 20 },
+                1024: { slidesPerView: 1.8, spaceBetween: 30 }
+            },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            pagination: { el: '.swiper-pagination', clickable: true },
+        });
+    </script>
+
+</body>
+</html>
