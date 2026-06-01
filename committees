@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | GWHMUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #000000; 
+            --surface-color: rgba(15, 15, 15, 0.6);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --gradient-glow: linear-gradient(135deg, #3b82f6, #8b5cf6, #ef4444, #f97316, #f59e0b);
+            --accent-gold: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        /* --- Page Transition Animations --- */
+        body {
+            opacity: 0;
+            animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        body.fade-out {
+            animation: fadeOutPage 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOutPage {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-15px); }
+        }
+        
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .nav-content { display: flex; align-items: center; }
+        .logo-link { flex: 0 0 auto; display: flex; align-items: center; padding-right: 40px; }
+        .nav-logo { height: 50px; filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.1)); }
+        .nav-links { flex: 1; display: flex; justify-content: space-evenly; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 1.1rem; font-weight: 700; text-transform: capitalize; letter-spacing: 1px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent-gold); text-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+
+        /* Typography & Layout */
+        .section-page { padding: 180px 0 100px; min-height: 80vh; }
+        .section-title { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 20px; text-align: center; }
+        .gradient-text { background: var(--gradient-glow); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center; }
+        .placeholder-box { background: var(--surface-color); border: 1px dashed var(--border-color); border-radius: 12px; padding: 60px; text-align: center; color: var(--text-muted); max-width: 800px; margin: 0 auto; }
+        
+        /* Footer */
+        footer { border-top: 1px solid var(--border-color); padding: 80px 0; text-align: center; }
+        footer img { height: 50px; opacity: 0.5; margin-bottom: 20px; filter: grayscale(100%); transition: all 0.3s ease; }
+        footer img:hover { opacity: 1; filter: grayscale(0%); }
+
+        @media (max-width: 900px) { .nav-links { display: none; } .logo-link { padding-right: 0; } }
+        @media (max-width: 768px) { .section-title { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo-link">
+                <img src="./images/MainLogo.png" alt="GWHMUN" class="nav-logo" onerror="this.style.display='none';">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#committees">Committees</a>
+                <a href="resources.html">Resources</a>
+                <a href="registrations.html">Registrations</a>
+                <a href="index.html#contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section-page">
+        <div class="container">
+            <h2 class="section-title gradient-text">Resources</h2>
+            <p class="section-subtitle">Conference agendas, board, and other details.</p>
+            <div class="placeholder-box">
+                <p><strong>Committee Info</strong> will be available here soon.</p>
+                <br>
+                <p>Agendas and committee guides coming soon.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <img src="./images/MainLogo.png" alt="GWHMUN Crest" onerror="this.style.display='none';">
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">© 2026 Greenwood High MUN</p>
+        </div>
+    </footer>
+    
+    <!-- Page Transition Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetUrl = link.href;
+                    const currentUrl = window.location.href.split('#')[0];
+                    const hrefAttribute = link.getAttribute('href');
+                    
+                    // Ignore transitions for links opening in new tabs, emails, or same-page scrolling
+                    if (
+                        link.getAttribute('target') === '_blank' || 
+                        hrefAttribute.startsWith('mailto:') || 
+                        targetUrl.split('#')[0] === currentUrl
+                    ) {
+                        return;
+                    }
+                    
+                    // Intercept the click to play the fade out animation
+                    e.preventDefault();
+                    document.body.classList.add('fade-out');
+                    
+                    // Wait for the animation to finish (400ms) before navigating
+                    setTimeout(() => {
+                        window.location.href = hrefAttribute;
+                    }, 400); 
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
