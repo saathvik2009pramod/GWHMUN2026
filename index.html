@@ -578,6 +578,41 @@
             }
         }
 
+
+        .profile-pic-box {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            background: rgba(255,255,255,0.06);
+            border: 2px dashed rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-pic-box::after {
+            content: "Photo";
+            position: absolute;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-pic[src=""] {
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -618,29 +653,21 @@
             
             <div class="glass-grid">
                 <div class="glass-card">
-                    <div class="card-inner">
-                        <div class="profile-pic-box">
-                            <img src="" alt="Secretary General Photo" class="profile-pic" onerror="this.style.display='none';">
-                        </div>
-                        <div>
-                            <h4>Secretary General</h4>
-                            <h3>Sparsh Bhowmick</h3>
-                            <p>Coming soon...</p>
-                        </div>
+                    <div class="profile-pic-box">
+                        <img src="" alt="Secretary General Photo" class="profile-pic" onerror="this.style.display='none';">
                     </div>
+                    <h4>Secretary General</h4>
+                    <h3>Sparsh Bhowmick</h3>
+                    <p>Coming soon...</p>
                 </div>
 
                 <div class="glass-card">
-                    <div class="card-inner">
-                        <div class="profile-pic-box">
-                            <img src="" alt="Director General Photo" class="profile-pic" onerror="this.style.display='none';">
-                        </div>
-                        <div>
-                            <h4>Director General</h4>
-                            <h3>Garvit Shah</h3>
-                            <p>Coming soon...</p>
-                        </div>
+                    <div class="profile-pic-box">
+                        <img src="" alt="Director General Photo" class="profile-pic" onerror="this.style.display='none';">
                     </div>
+                    <h4>Director General</h4>
+                    <h3>Garvit Shah</h3>
+                    <p>Coming soon...</p>
                 </div>
             </div>
         </div>
@@ -653,57 +680,57 @@
             
             <div class="committee-grid">
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/DISEC.png" alt="DISEC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>DISEC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/UNGA.png" alt="UNGA Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNGA</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/CCC.png" alt="CCC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>CCC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/IPC.png" alt="IPC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>IPC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/AIPPM.png" alt="AIPPM Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>AIPPM</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/UNSC.png" alt="UNSC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNSC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/UNHRC.png" alt="UNHRC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNHRC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/UNODC.png" alt="UNODC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNODC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/ICJ.png" alt="ICJ Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ICJ</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/UNEP.png" alt="UNEP Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNEP</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committees.html" class="com-card">
                     <img src="./images/ECOSOC.png" alt="ECOSOC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ECOSOC</h3>
                 </a>
