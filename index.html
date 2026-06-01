@@ -35,6 +35,26 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+        /* --- Page Transition Animations --- */
+        body {
+            opacity: 0;
+            animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        body.fade-out {
+            animation: fadeOutPage 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOutPage {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-15px); }
+        }
         
         .container {
             max-width: 1300px;
@@ -145,7 +165,6 @@
             z-index: 1;
             pointer-events: none;
         }
-
 
         .hero .container {
             position: relative;
@@ -394,16 +413,6 @@
             color: var(--text-main);
         }
 
-        /* --- Placeholder Content Blocks --- */
-        .placeholder-box {
-            background: var(--surface-color);
-            border: 1px dashed var(--border-color);
-            border-radius: 12px;
-            padding: 60px;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
         /* --- Contact Us Section --- */
         .contact-card {
             max-width: 900px;
@@ -569,22 +578,22 @@
             }
         }
 
-        </style>
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
 
     <nav>
         <div class="container nav-content">
-            <a href="#home" class="logo-link">
+            <a href="index.html" class="logo-link">
                 <img src="./images/MainLogo.png" alt="GWHMUN" class="nav-logo" onerror="this.style.display='none';">
             </a>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#committees">Committees</a>
-                <a href="#resources">Resources</a>
-                <a href="#registrations">Registrations</a>
-                <a href="#contact">Contact Us</a>
+                <a href="index.html">Home</a>
+                <a href="index.html#committees">Committees</a>
+                <a href="resources.html">Resources</a>
+                <a href="registrations.html">Registrations</a>
+                <a href="index.html#contact">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -597,7 +606,7 @@
             </div>
             <p class="animate-up delay-2">August 28th - 30th, 2026</p>
             <div class="animate-up delay-3">
-                <a href="#registrations" class="btn-glow">Register Now</a>
+                <a href="registrations.html" class="btn-glow">Register Now</a>
             </div>
         </div>
     </header>
@@ -626,74 +635,63 @@
     <section id="committees" class="section" style="background-color: #050505;">
         <div class="container">
             <h2 class="section-title gradient-text">Committees</h2>
-            <p class="section-subtitle">Find your Committee!</p>
+            <p class="section-subtitle">Find your Committee! Agendas coming soon.</p>
             
             <div class="committee-grid">
                 
                 <a href="#" class="com-card">
                     <img src="./images/DISEC.png" alt="DISEC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>DISEC</h3>
-                 
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/UNGA.png" alt="UNGA Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNGA</h3>
-                  
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/CCC.png" alt="CCC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>CCC</h3>
-                    
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/IPC.png" alt="IPC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>IPC</h3>
-                   
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/AIPPM.png" alt="AIPPM Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>AIPPM</h3>
-                    
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/UNSC.png" alt="UNSC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNSC</h3>
-                   
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/UNHRC.png" alt="UNHRC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNHRC</h3>
-                    
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/UNODC.png" alt="UNODC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNODC</h3>
-                   
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/ICJ.png" alt="ICJ Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ICJ</h3>
-                   
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/UNEP.png" alt="UNEP Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNEP</h3>
-                    
                 </a>
                 
                 <a href="#" class="com-card">
                     <img src="./images/ECOSOC.png" alt="ECOSOC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ECOSOC</h3>
-                   
                 </a>
             </div>
         </div>
@@ -718,8 +716,6 @@
             <div class="swiper-pagination"></div>
         </div>
     </section>
-
-
 
     <section id="contact" class="section">
         <div class="container">
@@ -799,6 +795,39 @@
             },
             navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
             pagination: { el: '.swiper-pagination', clickable: true },
+        });
+    </script>
+    
+    <!-- Page Transition Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetUrl = link.href;
+                    const currentUrl = window.location.href.split('#')[0];
+                    const hrefAttribute = link.getAttribute('href');
+                    
+                    // Ignore transitions for links opening in new tabs, emails, or same-page scrolling
+                    if (
+                        link.getAttribute('target') === '_blank' || 
+                        hrefAttribute.startsWith('mailto:') || 
+                        targetUrl.split('#')[0] === currentUrl
+                    ) {
+                        return;
+                    }
+                    
+                    // Intercept the click to play the fade out animation
+                    e.preventDefault();
+                    document.body.classList.add('fade-out');
+                    
+                    // Wait for the animation to finish (400ms) before navigating
+                    setTimeout(() => {
+                        window.location.href = hrefAttribute;
+                    }, 400); 
+                });
+            });
         });
     </script>
 
