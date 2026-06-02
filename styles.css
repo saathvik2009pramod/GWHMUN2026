@@ -257,6 +257,53 @@ h2 {
     box-shadow: inset 0 0 40px rgba(0,0,0,0.02);
 }
 
+/* --- Secretariat Letters (Welcome Address) --- */
+.glass-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Forces a single column to stack Sparsh above Garvit */
+    gap: 32px;
+    max-width: 900px; 
+    margin: 0 auto;
+}
+
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 40px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.glass-card h4 {
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.glass-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.glass-card p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(11, 37, 69, 0.08);
+    border-color: rgba(11, 37, 69, 0.15);
+}
+
 /* --- Committees Section (FISMUN Card Style) --- */
 .committees-section {
     background-color: var(--gray-bg);
@@ -449,4 +496,3 @@ h2 {
     filter: blur(0px);
     pointer-events: none;
 }
-
