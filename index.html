@@ -578,40 +578,6 @@
             }
         }
 
-
-        .profile-pic-box {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem auto;
-            background: rgba(255,255,255,0.06);
-            border: 2px dashed rgba(255,255,255,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .profile-pic-box::after {
-            position: absolute;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            pointer-events: none;
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .profile-pic[src=""] {
-            display: none;
-        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -624,7 +590,7 @@
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="#committees">Committees</a>
+                <a href="index.html#committees">Committees</a>
                 <a href="resources.html">Resources</a>
                 <a href="registrations.html">Registrations</a>
                 <a href="index.html#contact">Contact Us</a>
@@ -638,7 +604,7 @@
                 <span class="intro-text">Introducing</span>
                 <h1>GWH MUN 2026</h1>
             </div>
-            <p class="animate-up delay-2">August 18th - 20th, 2026</p>
+            <p class="animate-up delay-2">August 28th - 30th, 2026</p>
             <div class="animate-up delay-3">
                 <a href="registrations.html" class="btn-glow">Register Now</a>
             </div>
@@ -648,25 +614,20 @@
     <section id="secretariat" class="section">
         <div class="container">
             <h2 class="section-title gradient-text">Welcome Address</h2>
-            <p class="section-subtitle">A message from the secretariat leading the 2026 diplomatic summit.</p>
+            <p class="section-subtitle">A message from the executive board leading the 2026 diplomatic summit.</p>
             
-            <div class="glass-grid">
+            <!-- THE NUCLEAR FIX: Inline styles force this into a single column instantly -->
+            <div class="glass-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
                 <div class="glass-card">
-                    <div class="profile-pic-box">
-                        <img src="./images/sparsh.jpg" alt="Secretary General Photo" class="profile-pic">
-                    </div>
                     <h4>Secretary General</h4>
                     <h3>Sparsh Bhowmick</h3>
-                    <p>Coming soon...</p>
+                    <p>Whether this is your very first conference or one of many, I hope that this edition of GWHMUN becomes an unforgettable step in your journey toward becoming better global citizens. You don't have to be perfect, you just have to be present, be kind, be bold, and most of all – have fun.</p>
                 </div>
 
                 <div class="glass-card">
-                    <div class="profile-pic-box">
-                        <img src="./images/garvit.jpg" alt="Director General Photo" class="profile-pic">
-                    </div>
                     <h4>Director General</h4>
                     <h3>Garvit Shah</h3>
-                    <p>Coming soon...</p>
+                    <p>Model UN taught me that diplomacy is as much about understanding as it is about speaking. Leadership often begins in silence yet leads to loud echoes across our reality. Your presence, your voice, and your perspective are what give GWHMUN its meaning.</p>
                 </div>
             </div>
         </div>
@@ -679,57 +640,57 @@
             
             <div class="committee-grid">
                 
-                <a href="committee-disec.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/DISEC.png" alt="DISEC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>DISEC</h3>
                 </a>
                 
-                <a href="committees.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/UNGA.png" alt="UNGA Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNGA</h3>
                 </a>
                 
-                <a href="committee-ccc.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/CCC.png" alt="CCC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>CCC</h3>
                 </a>
                 
-                <a href="committee-ipc.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/IPC.png" alt="IPC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>IPC</h3>
                 </a>
                 
-                <a href="committee-aippm.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/AIPPM.png" alt="AIPPM Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>AIPPM</h3>
                 </a>
                 
-                <a href="committee-unsc.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/UNSC.png" alt="UNSC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNSC</h3>
                 </a>
                 
-                <a href="committee-unhrc.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/UNHRC.png" alt="UNHRC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNHRC</h3>
                 </a>
                 
-                <a href="committee-unodc.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/UNODC.png" alt="UNODC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNODC</h3>
                 </a>
                 
-                <a href="committee-icj.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/ICJ.png" alt="ICJ Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ICJ</h3>
                 </a>
                 
-                <a href="committee-unep.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/UNEP.png" alt="UNEP Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNEP</h3>
                 </a>
                 
-                <a href="committee-ecosoc.html" class="com-card">
+                <a href="#" class="com-card">
                     <img src="./images/ECOSOC.png" alt="ECOSOC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ECOSOC</h3>
                 </a>
@@ -747,7 +708,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="./images/IMG_9627.JPG" alt="GWHMUN Gallery 1" loading="lazy"></div>
                 <div class="swiper-slide"><img src="./images/DSC03070.JPG" alt="GWHMUN Gallery 2" loading="lazy"></div>
-                <div class="swiper-slide"><img src="./images/DSC03436.JPG" alt="GWHMUN Gallery 3" loading="lazy"></div>
+                <div class="swiper-slide"><img src="./images/_DSC0029.JPG" alt="GWHMUN Gallery 3" loading="lazy"></div>
                 <div class="swiper-slide"><img src="./images/IMG_5428.JPG" alt="GWHMUN Gallery 4" loading="lazy"></div>
                 <div class="swiper-slide"><img src="./images/IMG_9753.JPG" alt="GWHMUN Gallery 5" loading="lazy"></div>
             </div>
@@ -763,12 +724,12 @@
                 <h2 class="section-title gradient-text">Contact Us</h2>
                 
                 <div class="contact-details">
-                    <a href="mailto:gwhmun@greenwoodhigh.edu.in" class="contact-link">
+                    <a href="mailto:secretariat@gwhmun.com" class="contact-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        gwhmun@greenwoodhigh.edu.in
+                        secretariat@gwhmun.com
                     </a>
                     
                     <a href="https://instagram.com/gwhmun" target="_blank" class="contact-link">
@@ -777,7 +738,7 @@
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                         </svg>
-                        @gwhmun.2026
+                        @gwhmun
                     </a>
                 </div>
 
