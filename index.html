@@ -101,16 +101,35 @@
             align-items: center;
         }
 
+        /* Updated Logo Link for Alignment */
         .logo-link {
             flex: 0 0 auto;
             display: flex;
             align-items: center;
+            gap: 15px; /* Creates space between the image and text */
             padding-right: 40px;
+            text-decoration: none;
         }
 
         .nav-logo {
             height: 50px;
             animation: pulseGlow 4s infinite;
+        }
+
+        /* New Class for GWHMUN Text next to Logo */
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect for the new text */
+        .logo-link:hover .logo-text {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
         .nav-links {
@@ -579,8 +598,10 @@
 
     <nav>
         <div class="container nav-content">
+            <!-- Text added alongside Logo image -->
             <a href="index.html" class="logo-link">
                 <img src="./images/MainLogo.png" alt="GWHMUN" class="nav-logo" onerror="this.style.display='none';">
+                <span class="logo-text">GWHMUN</span>
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -598,7 +619,7 @@
                 <span class="intro-text">Introducing</span>
                 <h1>GWH MUN 2026</h1>
             </div>
-            <p class="animate-up delay-2">August 18th - 20th, 2026</p>
+            <p class="animate-up delay-2">August 28th - 30th, 2026</p>
             <div class="animate-up delay-3">
                 <a href="registrations.html" class="btn-glow">Register Now</a>
             </div>
@@ -612,8 +633,10 @@
             
             <div class="glass-grid" style="display: flex; flex-direction: column; gap: 30px; max-width: 900px; margin: 0 auto;">
                 
+                <!-- Sparsh's Card -->
                 <div class="glass-card" style="display: flex; flex-direction: column; gap: 24px; text-align: left;">
                     
+                    <!-- Top Section: Image + Name -->
                     <div style="display: flex; align-items: center; gap: 24px;">
                         <img src="./images/sparsh.jpg" alt="Sparsh Bhowmick" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-gold); flex-shrink: 0;" onerror="this.src='./images/MainLogo.png'">
                         <div>
@@ -622,6 +645,7 @@
                         </div>
                     </div>
 
+                    <!-- Bottom Section: Letter -->
                     <p>Dear Delegates,<br><br>
                     It is my distinct privilege to welcome you all to GWHMUN 2026 as your Secretary General.<br><br>
                     For many of you, this conference may serve as your first step into Model UN and international relations, and I hope that this conference inspires a greater interest in the world of diplomacy. It is easy to understand just how intimidating your first conference can be. From chaotic committees to complex resolutions, Model UN is not your ordinary extracurricular. My first conference was no exception. Aside from a lacklustre speech, I made no other relevant contributions to committee, quickly realizing just how intense MUN could be.<br><br>
@@ -634,8 +658,10 @@
                     Secretary General, GWHMUN’26</p>
                 </div>
 
+                <!-- Garvit's Card -->
                 <div class="glass-card" style="display: flex; flex-direction: column; gap: 24px; text-align: left;">
                     
+                    <!-- Top Section: Image + Name -->
                     <div style="display: flex; align-items: center; gap: 24px;">
                         <img src="./images/garvit.jpg" alt="Garvit Shah" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-gold); flex-shrink: 0;" onerror="this.src='./images/MainLogo.png'">
                         <div>
@@ -644,6 +670,7 @@
                         </div>
                     </div>
 
+                    <!-- Bottom Section: Letter -->
                     <p>"Discovery is a child’s privilege. I mean the small child, the child who is not afraid to be wrong, to look silly, to not be serious, and to act differently from everyone else. He is also not afraid that the things he is interested in are in bad taste or turn out to be different from his expectations, from what they should be, or rather he is not afraid of what they actually are. He ignores the silent and flawless consensus that is part of the air we breathe – the consensus of all the people who are, or are reputed to be, reasonable." -- Alexander Grothendieck<br><br>
                     It is my pleasure to be able to serve you as the Director General of GWH MUN 26.<br><br>
                     MUN is a process of discovery. It allows us to step into something much larger than ourselves and helps us understand how decisions are made at the highest level.<br>
@@ -663,57 +690,57 @@
             
             <div class="committee-grid">
                 
-                <a href="#" class="com-card">
+                <a href="committee-disec.html" class="com-card">
                     <img src="./images/DISEC.png" alt="DISEC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>DISEC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-unga.html" class="com-card">
                     <img src="./images/UNGA.png" alt="UNGA Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNGA</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-ccc.html" class="com-card">
                     <img src="./images/CCC.png" alt="CCC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>CCC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-ipc.html" class="com-card">
                     <img src="./images/IPC.png" alt="IPC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>IPC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-aippm.html" class="com-card">
                     <img src="./images/AIPPM.png" alt="AIPPM Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>AIPPM</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-unsc.html" class="com-card">
                     <img src="./images/UNSC.png" alt="UNSC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNSC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-unhrc.html" class="com-card">
                     <img src="./images/UNHRC.png" alt="UNHRC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNHRC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-unodc.html" class="com-card">
                     <img src="./images/UNODC.png" alt="UNODC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNODC</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-icj.html" class="com-card">
                     <img src="./images/ICJ.png" alt="ICJ Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ICJ</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-unep.html" class="com-card">
                     <img src="./images/UNEP.png" alt="UNEP Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>UNEP</h3>
                 </a>
                 
-                <a href="#" class="com-card">
+                <a href="committee-ecosoc.html" class="com-card">
                     <img src="./images/ECOSOC.png" alt="ECOSOC Logo" class="com-logo" onerror="this.style.display='none';">
                     <h3>ECOSOC</h3>
                 </a>
@@ -721,6 +748,7 @@
         </div>
     </section>
 
+    <!-- Gallery Carousel Section -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <h2 class="section-title gradient-text">Gallery</h2>
@@ -821,6 +849,7 @@
         });
     </script>
     
+    <!-- Page Transition Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('a[href]');
