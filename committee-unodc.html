@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNODC | GWHMUN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.72);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #ffffff;
+      --muted: #a1a1aa;
+      --accent: #f59e0b;
+      --glow: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at top, rgba(245,158,11,.10), transparent 30%), var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(5,5,5,.72); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+    .brand { font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { color: var(--text); text-decoration: none; font-weight: 700; opacity: .9; }
+    .nav-links a:hover { color: var(--accent); }
+    .page { position: relative; z-index: 1; padding: 140px 0 80px; min-height: 100vh; }
+    .hero { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 28px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); box-shadow: 0 20px 60px rgba(0,0,0,.35); padding: 48px; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(245,158,11,.12), transparent 45%), linear-gradient(315deg, rgba(139,92,246,.14), transparent 45%); pointer-events: none; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.03); font-size: .82rem; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 18px; }
+    h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: .95; margin-bottom: 18px; letter-spacing: -2px; }
+    .sub { color: var(--muted); max-width: 58ch; font-size: 1.05rem; }
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 14px; text-decoration: none; font-weight: 700; border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,.04); }
+    .btn.primary { background: var(--glow); color: #111; border-color: transparent; }
+    .logo-panel { position: relative; min-height: 360px; border-radius: 24px; border: 1px solid var(--border); background: rgba(255,255,255,.03); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .logo-panel::before { content: ''; position: absolute; inset: 0; background-image: url('./images/UNODC.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.12; pointer-events: none; }
+    .info-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+    .info-card .label { color: var(--muted); font-size: .82rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .info-card .value { font-size: 1.05rem; font-weight: 700; }
+    .section { margin-top: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 28px; }
+    .section h2 { font-size: 1.5rem; margin-bottom: 10px; }
+    .section p { color: var(--muted); }
+    .empty { margin-top: 18px; padding: 18px; border: 1px dashed var(--border); border-radius: 16px; color: var(--muted); background: rgba(255,255,255,.02); }
+    footer { padding: 44px 0 64px; text-align: center; color: var(--muted); }
+    @media (max-width: 900px) { .hero-grid, .info-grid { grid-template-columns: 1fr; } .logo-panel { min-height: 260px; } .nav-links { display: none; } .hero { padding: 28px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-content">
+      <div class="brand">GWHMUN</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#committees">Committees</a>
+        <a href="resources.html">Resources</a>
+        <a href="registrations.html">Registrations</a>
+      </div>
+    </div>
+  </nav>
+  <main class="page">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Committee Page</div>
+            <h1>UNODC</h1>
+            <p class="sub">UNODC. This page is built to hold your agenda, background guide, executive board details, and all committee-specific content.</p>
+            <div class="actions">
+              <a class="btn primary" href="index.html#committees">Back to committees</a>
+              <a class="btn" href="#details">View details</a>
+            </div>
+          </div>
+          <div class="logo-panel"></div>
+        </div>
+      </section>
+      <section class="info-grid" id="details">
+        <div class="info-card"><div class="label">Agenda</div><div class="value">Coming soon</div></div>
+        <div class="info-card"><div class="label">Executive Board</div><div class="value">Coming soon</div></div>
+        <div class="info-card"><div class="label">Study Guide</div><div class="value">Coming soon</div></div>
+      </section>
+      <section class="section">
+        <h2>Background</h2>
+        <p>Add your committee background, rules of procedure, and notes here.</p>
+        <div class="empty">You can replace this section with full committee-specific content.</div>
+      </section>
+    </div>
+  </main>
+  <footer>© 2026 Greenwood High MUN</footer>
+</body>
+</html>
