@@ -577,3 +577,15 @@ h2 {
     pointer-events: none;
     animation: logoPulse 4s ease-in-out infinite;
 }
+@keyframes logoPulse {
+    0%, 100% {
+        opacity: 0.28;
+        transform: translate(-50%, -50%) scale(0.96);
+        filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.08));
+    }
+    50% {
+        opacity: 0.55;
+        transform: translate(-50%, -50%) scale(1.05);
+        filter: drop-shadow(0 0 28px rgba(245, 158, 11, 0.22));
+    }
+}
