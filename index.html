@@ -211,6 +211,21 @@
     animation: titleGlow 2.8s ease-in-out infinite;
     text-shadow: 0 0 12px rgba(255,255,255,0.18);
 }
+        @keyframes titleGlow {
+    0%, 100% {
+        opacity: 0.75;
+        text-shadow:
+            0 0 8px rgba(255,255,255,0.10),
+            0 0 20px rgba(245, 158, 11, 0.12);
+    }
+    50% {
+        opacity: 1;
+        text-shadow:
+            0 0 14px rgba(255,255,255,0.28),
+            0 0 34px rgba(245, 158, 11, 0.35),
+            0 0 60px rgba(236, 72, 153, 0.18);
+    }
+}
 
         .gradient-text {
             background: var(--gradient-glow);
