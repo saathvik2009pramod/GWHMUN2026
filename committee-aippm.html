@@ -192,13 +192,15 @@
             height: 100%;
             min-height: 400px;
             box-shadow: none;
+            overflow: hidden;
         }
         .committee-logo-wrapper img {
-            width: 100%;
-            max-width: 360px;
+            display: block;
+            width: min(100%, 400px);
             height: auto;
-            max-height: 360px;
+            max-height: 340px;
             object-fit: contain;
+            transform: translateY(-4px);
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
             opacity: 0.95;
             mix-blend-mode: screen;
@@ -259,6 +261,7 @@
             .committee-hero h1 { font-size: 3.5rem; }
             .committee-copy-box { padding: 32px 28px; }
             .committee-logo-wrapper { min-height: 250px; padding: 0; }
+            .committee-logo-wrapper img { max-height: 280px; transform: translateY(-2px); }
         }
     </style>
 </head>
