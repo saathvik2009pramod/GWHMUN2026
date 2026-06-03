@@ -10,12 +10,12 @@
     
     <style>
         :root {
-            --bg-color: #050505; /* Slightly offset from pure black to match screenshot */
-            --surface-color: #0f0f11; /* Dark grey card color from screenshot */
+            --bg-color: #050505;
+            --surface-color: #0f0f11;
             --border-color: rgba(255, 255, 255, 0.06);
             --text-main: #ffffff;
-            --text-muted: #71717a; /* Muted grey for labels */
-            --gradient-glow: linear-gradient(90deg, #f97316, #ec4899, #8b5cf6); /* The exact gradient from your screenshot */
+            --text-muted: #71717a;
+            --gradient-glow: linear-gradient(90deg, #f97316, #ec4899, #8b5cf6);
             --accent-gold: #f59e0b;
         }
 
@@ -32,10 +32,6 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* --- Page Transition Animations --- */
-        body {
             opacity: 0;
             animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -57,7 +53,6 @@
             padding: 0 24px;
         }
 
-        /* --- Glass Navbar --- */
         nav {
             position: fixed;
             top: 0;
@@ -119,7 +114,6 @@
             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
-        /* --- Committee Specific Styles --- */
         .committee-hero {
             padding-top: 180px;
             padding-bottom: 60px;
@@ -129,8 +123,6 @@
             align-items: center;
             position: relative;
         }
-        
-        /* Subtle background glow from the screenshot */
         .committee-hero::before {
             content: '';
             position: absolute;
@@ -165,12 +157,11 @@
             color: var(--text-main);
         }
 
-        /* Solid Gradient Button matching screenshot */
         .btn-solid {
             display: inline-block;
             padding: 14px 28px;
             background: var(--gradient-glow);
-            color: #000000; /* Dark text on gradient */
+            color: #000000;
             font-weight: 800;
             font-size: 0.95rem;
             border-radius: 12px;
@@ -182,23 +173,35 @@
             box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
         }
 
-        .committee-logo-wrapper {
+        .committee-copy-box {
             background: var(--surface-color);
             border: 1px solid var(--border-color);
-            border-radius: 24px; /* Soft rounded corners from screenshot */
-            padding: 60px;
+            border-radius: 24px;
+            padding: 48px 52px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .committee-logo-wrapper {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100%;
             min-height: 400px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            box-shadow: none;
         }
         .committee-logo-wrapper img {
-            max-width: 100%;
+            width: 100%;
+            max-width: 360px;
             height: auto;
-            max-height: 250px;
+            max-height: 360px;
+            object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            opacity: 0.95;
+            mix-blend-mode: screen;
         }
 
         .info-grid {
@@ -211,7 +214,7 @@
         .info-box {
             background: var(--surface-color);
             border: 1px solid var(--border-color);
-            border-radius: 16px; /* Matched from screenshot */
+            border-radius: 16px;
             padding: 24px 30px;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
@@ -232,7 +235,6 @@
             color: var(--text-main);
         }
 
-        /* --- Footer --- */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 80px 0;
@@ -250,13 +252,13 @@
             filter: grayscale(0%);
         }
 
-        /* --- Mobile Responsiveness --- */
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .logo-link { padding-right: 0; }
             .committee-hero { grid-template-columns: 1fr; gap: 40px; padding-top: 140px; }
             .committee-hero h1 { font-size: 3.5rem; }
-            .committee-logo-wrapper { min-height: 250px; padding: 40px; }
+            .committee-copy-box { padding: 32px 28px; }
+            .committee-logo-wrapper { min-height: 250px; padding: 0; }
         }
     </style>
 </head>
@@ -279,24 +281,18 @@
     </nav>
 
     <main class="container">
-        <!-- Committee Header Section -->
         <div class="committee-hero">
-            <div>
+            <div class="committee-copy-box">
                 <span class="committee-tag">Committee Page</span>
-                
-                <!-- CHANGE THIS TITLE FOR EACH COMMITTEE -->
                 <h1>AIPPM</h1>
-                
                 <a href="index.html#committees" class="btn-solid">Back to committees</a>
             </div>
             
             <div class="committee-logo-wrapper">
-                <!-- CHANGE THIS IMAGE SOURCE FOR EACH COMMITTEE -->
                 <img src="./images/AIPPM.png" alt="Committee Logo" onerror="this.style.display='none';">
             </div>
         </div>
 
-        <!-- Committee Information Grid -->
         <div class="info-grid">
             <div class="info-box">
                 <h4>Agenda</h4>
@@ -322,7 +318,6 @@
         </div>
     </footer>
 
-    <!-- Page Transition Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('a[href]');
@@ -331,14 +326,12 @@
                     const targetUrl = link.href;
                     const currentUrl = window.location.href.split('#')[0];
                     const hrefAttribute = link.getAttribute('href');
-                    
                     if (link.getAttribute('target') === '_blank' || hrefAttribute.startsWith('mailto:') || targetUrl.split('#')[0] === currentUrl) {
                         return;
                     }
-                    
                     e.preventDefault();
                     document.body.classList.add('fade-out');
-                    setTimeout(() => { window.location.href = hrefAttribute; }, 400); 
+                    setTimeout(() => { window.location.href = hrefAttribute; }, 400);
                 });
             });
         });
