@@ -562,3 +562,17 @@ h2 {
         transform: scale(1.02);
     }
 }
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: url('./images/MainLogo.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.65;
+    z-index: 1;
+    pointer-events: none;
+}
