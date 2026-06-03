@@ -1,348 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICJ | GWHMUN 2026</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;500;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #050505; /* Slightly offset from pure black to match screenshot */
-            --surface-color: #0f0f11; /* Dark grey card color from screenshot */
-            --border-color: rgba(255, 255, 255, 0.06);c
-            --text-main: #ffffff;
-            --text-muted: #71717a; /* Muted grey for labels */
-            --gradient-glow: linear-gradient(90deg, #f97316, #ec4899, #8b5cf6); /* The exact gradient from your screenshot */
-            --accent-gold: #f59e0b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Space Grotesk', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- Page Transition Animations --- */
-        body {
-            opacity: 0;
-            animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        body.fade-out {
-            animation: fadeOutPage 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeOutPage {
-            from { opacity: 1; transform: translateY(0); }
-            to { opacity: 0; transform: translateY(-15px); }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* --- Glass Navbar --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-        }
-        .nav-content {
-            display: flex;
-            align-items: center;
-        }
-        .logo-link {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding-right: 40px;
-            text-decoration: none;
-        }
-        .nav-logo {
-            height: 50px;
-            filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.1));
-        }
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-        .logo-link:hover .logo-text {
-            color: var(--accent-gold);
-            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
-        }
-        .nav-links {
-            flex: 1;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: capitalize;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: var(--accent-gold);
-            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
-        }
-
-        /* --- Committee Specific Styles --- */
-        .committee-hero {
-            padding-top: 180px;
-            padding-bottom: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-        }
-        
-        /* Subtle background glow from the screenshot */
-        .committee-hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 15%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 60%);
-            transform: translateY(-50%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .committee-tag {
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 24px;
-        }
-        
-        .committee-hero h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: 40px;
-            color: var(--text-main);
-        }
-
-        /* Solid Gradient Button matching screenshot */
-        .btn-solid {
-            display: inline-block;
-            padding: 14px 28px;
-            background: var(--gradient-glow);
-            color: #000000; /* Dark text on gradient */
-            font-weight: 800;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .btn-solid:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
-        }
-
-        .committee-logo-wrapper {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 24px; /* Soft rounded corners from screenshot */
-            padding: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            min-height: 400px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-        .committee-logo-wrapper img {
-            max-width: 100%;
-            height: auto;
-            max-height: 250px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 120px;
-        }
-        
-        .info-box {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px; /* Matched from screenshot */
-            padding: 24px 30px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .info-box:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.2);
-        }
-        .info-box h4 {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-        }
-        .info-box h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        /* --- Footer --- */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 80px 0;
-            text-align: center;
-        }
-        footer img {
-            height: 50px;
-            opacity: 0.5;
-            margin-bottom: 20px;
-            filter: grayscale(100%);
-            transition: all 0.3s ease;
-        }
-        footer img:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        /* --- Mobile Responsiveness --- */
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .logo-link { padding-right: 0; }
-            .committee-hero { grid-template-columns: 1fr; gap: 40px; padding-top: 140px; }
-            .committee-hero h1 { font-size: 3.5rem; }
-            .committee-logo-wrapper { min-height: 250px; padding: 40px; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICJ | GWHMUN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.72);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #ffffff;
+      --muted: #a1a1aa;
+      --accent: #f59e0b;
+      --glow: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at top, rgba(245,158,11,.10), transparent 30%), var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(5,5,5,.72); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+    .brand { font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { color: var(--text); text-decoration: none; font-weight: 700; opacity: .9; }
+    .nav-links a:hover { color: var(--accent); }
+    .page { position: relative; z-index: 1; padding: 140px 0 80px; min-height: 100vh; }
+    .hero { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 28px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); box-shadow: 0 20px 60px rgba(0,0,0,.35); padding: 48px; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(245,158,11,.12), transparent 45%), linear-gradient(315deg, rgba(139,92,246,.14), transparent 45%); pointer-events: none; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: #000; font-size: .82rem; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 18px; }
+    h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: .95; margin-bottom: 18px; letter-spacing: -2px; }
+    .sub { color: var(--muted); max-width: 58ch; font-size: 1.05rem; }
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 14px; text-decoration: none; font-weight: 700; border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,.04); }
+    .btn.primary { background: var(--glow); color: #111; border-color: transparent; }
+    .logo-panel { position: relative; min-height: 360px; border-radius: 24px; border: 1px solid var(--border); background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .logo-panel::before { content: ''; position: absolute; inset: 0; background-image: url('./images/ICJ.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; opacity: 1; pointer-events: none; }
+    .info-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+    .info-card .label { color: var(--muted); font-size: .82rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .info-card .value { font-size: 1.05rem; font-weight: 700; }
+    .section { margin-top: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 28px; }
+    .section h2 { font-size: 1.5rem; margin-bottom: 10px; }
+    .section p { color: var(--muted); }
+    .empty { margin-top: 18px; padding: 18px; border: 1px dashed var(--border); border-radius: 16px; color: var(--muted); background: rgba(255,255,255,.02); }
+    footer { padding: 44px 0 64px; text-align: center; color: var(--muted); }
+    @media (max-width: 900px) { .hero-grid, .info-grid { grid-template-columns: 1fr; } .logo-panel { min-height: 260px; } .nav-links { display: none; } .hero { padding: 28px; } }
+  </style>
 </head>
 <body>
-
-    <nav>
-        <div class="container nav-content">
-            <a href="index.html" class="logo-link">
-                <img src="./images/MainLogo.png" alt="GWHMUN Logo" class="nav-logo" onerror="this.style.display='none';">
-                <span class="logo-text">GWHMUN</span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#committees">Committees</a>
-                <a href="resources.html">Resources</a>
-                <a href="registrations.html">Registrations</a>
-                <a href="index.html#contact">Contact Us</a>
+  <nav>
+    <div class="container nav-content">
+      <div class="brand">GWHMUN</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#committees">Committees</a>
+        <a href="resources.html">Resources</a>
+        <a href="registrations.html">Registrations</a>
+      </div>
+    </div>
+  </nav>
+  <main class="page">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Committee Page</div>
+            <h1>ICJ</h1>
+            <p class="sub">ICJ. This page is built to hold your agenda, background guide, executive board details, and all committee-specific content.</p>
+            <div class="actions">
+              <a class="btn primary" href="index.html#committees">Back to committees</a>
+              <a class="btn" href="#details">View details</a>
             </div>
+          </div>
+          <div class="logo-panel"></div>
         </div>
-    </nav>
-
-    <main class="container">
-        <!-- Committee Header Section -->
-        <div class="committee-hero">
-            <div>
-                <span class="committee-tag">Committee Page</span>
-                
-                <!-- CHANGE THIS TITLE FOR EACH COMMITTEE -->
-                <h1>ICJ</h1>
-                
-                <a href="index.html#committees" class="btn-solid">Back to committees</a>
-            </div>
-            
-            <div class="committee-logo-wrapper">
-                <!-- CHANGE THIS IMAGE SOURCE FOR EACH COMMITTEE -->
-                <img src="./images/ICJ.png" alt="Committee Logo" onerror="this.style.display='none';">
-            </div>
-        </div>
-
-        <!-- Committee Information Grid -->
-        <div class="info-grid">
-            <div class="info-box">
-                <h4>Agenda</h4>
-                <h3>Coming soon</h3>
-            </div>
-            
-            <div class="info-box">
-                <h4>Executive Board</h4>
-                <h3>Coming soon</h3>
-            </div>
-            
-            <div class="info-box">
-                <h4>Background Guide</h4>
-                <h3>Coming soon</h3>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <img src="./images/MainLogo.png" alt="GWHMUN Crest" onerror="this.style.display='none';">
-            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">© 2026 Greenwood High MUN</p>
-        </div>
-    </footer>
-
-    <!-- Page Transition Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const links = document.querySelectorAll('a[href]');
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const targetUrl = link.href;
-                    const currentUrl = window.location.href.split('#')[0];
-                    const hrefAttribute = link.getAttribute('href');
-                    
-                    if (link.getAttribute('target') === '_blank' || hrefAttribute.startsWith('mailto:') || targetUrl.split('#')[0] === currentUrl) {
-                        return;
-                    }
-                    
-                    e.preventDefault();
-                    document.body.classList.add('fade-out');
-                    setTimeout(() => { window.location.href = hrefAttribute; }, 400); 
-                });
-            });
-        });
-    </script>
-
+      </section>
+      <section class="info-grid" id="details">
+        <div class="info-card"><div class="label">Agenda</div><div class="value">Coming soon</div></div>
+        <div class="info-card"><div class="label">Executive Board</div><div class="value">Coming soon</div></div>
+        <div class="info-card"><div class="label">Study Guide</div><div class="value">Coming soon</div></div>
+      </section>
+      <section class="section">
+        <h2>Background</h2>
+        <p>Add your committee background, rules of procedure, and notes here.</p>
+        <div class="empty">You can replace this section with full committee-specific content.</div>
+      </section>
+    </div>
+  </main>
+  <footer>© 2026 Greenwood High MUN</footer>
 </body>
 </html>
