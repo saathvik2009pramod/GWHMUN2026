@@ -99,16 +99,17 @@
         .nav-content {
             display: flex;
             align-items: center;
+            justify-content: space-between; /* Spreads logo and hamburger menu */
         }
 
-        /* Updated Logo Link for Alignment */
         .logo-link {
             flex: 0 0 auto;
             display: flex;
             align-items: center;
-            gap: 15px; /* Creates space between the image and text */
-            padding-right: 40px;
+            gap: 15px;
             text-decoration: none;
+            position: relative;
+            z-index: 1001; /* Keeps logo clickable above mobile menu */
         }
 
         .nav-logo {
@@ -116,7 +117,6 @@
             animation: pulseGlow 4s infinite;
         }
 
-        /* New Class for GWHMUN Text next to Logo */
         .logo-text {
             font-size: 1.6rem;
             font-weight: 800;
@@ -126,19 +126,16 @@
             transition: all 0.3s ease;
         }
 
-        /* Hover effect for the new text */
         .logo-link:hover .logo-text {
             color: var(--accent-gold);
             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
+        /* Desktop Links */
         .nav-links {
-            flex: 1;
             display: flex;
-            justify-content: space-evenly;
+            gap: 40px;
             align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         .nav-links a {
@@ -154,6 +151,74 @@
         .nav-links a:hover {
             color: var(--accent-gold);
             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+        }
+
+        /* --- Hamburger Menu Icon --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001; /* Keeps it above the slide-in menu */
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-main);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Hamburger Animation (Turns into an X) */
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--accent-gold);
+        }
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--accent-gold);
+        }
+
+        /* --- Full Screen Mobile Menu Overlay --- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
         }
 
         /* --- Cinematic Hero Section --- */
@@ -200,32 +265,15 @@
         }
 
         .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 9vw;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    color: var(--text-main);
-    width: 100%;
-    animation: titleGlow 2.8s ease-in-out infinite;
-    text-shadow: 0 0 12px rgba(255,255,255,0.18);
-}
-        @keyframes titleGlow {
-    0%, 100% {
-        opacity: 0.75;
-        text-shadow:
-            0 0 8px rgba(255,255,255,0.10),
-            0 0 20px rgba(245, 158, 11, 0.12);
-    }
-    50% {
-        opacity: 1;
-        text-shadow:
-            0 0 14px rgba(255,255,255,0.28),
-            0 0 34px rgba(245, 158, 11, 0.35),
-            0 0 60px rgba(236, 72, 153, 0.18);
-    }
-}
+            font-family: 'Playfair Display', serif;
+            font-size: 9vw;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            width: 100%;
+        }
 
         .gradient-text {
             background: var(--gradient-glow);
@@ -524,13 +572,11 @@
         /* --- Mobile Responsiveness --- */
         @media (max-width: 900px) {
             .nav-links {
-                display: none;
+                display: none; /* Hides desktop links */
             }
-            .logo-link {
-                padding-right: 0;
+            .hamburger {
+                display: flex; /* Shows hamburger menu icon */
             }
-        }
-        @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
             .hero::before { width: 100%; opacity: 0.08; } 
             .section-title { font-size: 2.5rem; }
@@ -618,9 +664,10 @@
             <!-- Text added alongside Logo image -->
             <a href="index.html" class="logo-link">
                 <img src="./images/MainLogo.png" alt="GWHMUN" class="nav-logo" onerror="this.style.display='none';">
-                
                 <span class="logo-text">GWHMUN</span>
             </a>
+            
+            <!-- Desktop Links -->
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#committees">Committees</a>
@@ -628,8 +675,24 @@
                 <a href="registrations.html">Registrations</a>
                 <a href="index.html#contact">Contact Us</a>
             </div>
+
+            <!-- Mobile Hamburger Icon -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#committees">Committees</a>
+        <a href="resources.html">Resources</a>
+        <a href="registrations.html">Registrations</a>
+        <a href="index.html#contact">Contact Us</a>
+    </div>
 
     <header id="home" class="hero">
         <div class="container">
@@ -637,7 +700,7 @@
                 <span class="intro-text">Introducing</span>
                 <h1>GWH MUN 2026</h1>
             </div>
-            <p class="animate-up delay-2">August 18th - 20th, 2026</p>
+            <p class="animate-up delay-2">August 28th - 30th, 2026</p>
             <div class="animate-up delay-3">
                 <a href="registrations.html" class="btn-glow">Register Now</a>
             </div>
@@ -647,7 +710,7 @@
     <section id="secretariat" class="section">
         <div class="container">
             <h2 class="section-title gradient-text">Welcome Address</h2>
-            <p class="section-subtitle">A message from the secretariat leading the 2026 diplomatic summit.</p>
+            <p class="section-subtitle">A message from the executive board leading the 2026 diplomatic summit.</p>
             
             <div class="glass-grid" style="display: flex; flex-direction: column; gap: 30px; max-width: 900px; margin: 0 auto;">
                 
@@ -671,7 +734,7 @@
                     To external delegates, I applaud your courage in literally stepping out of your comfort zones to engage in this conference. This conference is more than just an academic competition. It involves fostering collaboration, developing relationships, and, most importantly, enjoying yourself and growing as a person. MUN has transformed the way I approach problems, communicate ideas, and taught me the immense value of communication and determination.<br><br>
                     As we begin this conference, I’ll leave you with a final message. MUN is all about the unconventional. Don't be afraid to think outside the box, break the mold, and rock the boat. Whenever you find yourself on the side of the majority, it is time to pause and reflect. So delegates, seize this opportunity to speak your mind, face adversity head-on, and inspire real change.<br><br>
                     May the Force be with you.<br><br>
-                    Yours sincerely,<br>
+                    Yours faithfully,<br>
                     Sparsh Bhowmick<br>
                     Secretary General, GWHMUN’26</p>
                 </div>
@@ -776,7 +839,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="./images/IMG_9627.JPG" alt="GWHMUN Gallery 1" loading="lazy"></div>
                 <div class="swiper-slide"><img src="./images/DSC03070.JPG" alt="GWHMUN Gallery 2" loading="lazy"></div>
-                <div class="swiper-slide"><img src="./images/DSC03436.JPG" alt="GWHMUN Gallery 3" loading="lazy"></div>
+                <div class="swiper-slide"><img src="./images/_DSC0029.JPG" alt="GWHMUN Gallery 3" loading="lazy"></div>
                 <div class="swiper-slide"><img src="./images/IMG_5428.JPG" alt="GWHMUN Gallery 4" loading="lazy"></div>
                 <div class="swiper-slide"><img src="./images/IMG_9753.JPG" alt="GWHMUN Gallery 5" loading="lazy"></div>
             </div>
@@ -791,28 +854,10 @@
             <div class="glass-card contact-card">
                 <h2 class="section-title gradient-text">Contact Us</h2>
                 
-                <div class="contact-details">
-                    <a href="mailto:gwhmun@greenwoodhigh.edu.in" class="contact-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        gwhmun@greenwoodhigh.edu.in
-                    </a>
-                    
-                    <a href="https://www.instagram.com/gwhmun.2026/" target="_blank" class="contact-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                        @gwhmun.2026
-                    </a>
-                </div>
-
-                <div class="map-wrapper">
+                <!-- Map moved ABOVE the contact details -->
+                <div class="map-wrapper" style="margin-bottom: 40px;">
                     <iframe 
-                        src="https://maps.google.com/maps?q=Greenwood+High+International+School,+Sarjapur&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        src="https://maps.google.com/maps?q=Greenwood+High+Int'l+School+(IB%2FIGCSE)&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                         width="100%" 
                         height="100%" 
                         style="border:0;" 
@@ -821,6 +866,27 @@
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
+
+                <!-- Contact details moved BELOW the map -->
+                <div class="contact-details" style="margin-bottom: 0;">
+                    <a href="mailto:secretariat@gwhmun.com" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        secretariat@gwhmun.com
+                    </a>
+                    
+                    <a href="https://instagram.com/gwhmun" target="_blank" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        @gwhmun
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
@@ -832,7 +898,9 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
+        // Scroll Animation Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -848,10 +916,29 @@
             el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
             observer.observe(el);
         });
+
+        // Mobile Menu Toggle Script
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Gallery Carousel
         const gallerySwiper = new Swiper('.gallery-swiper', {
             loop: true,
             autoplay: { delay: 3500, disableOnInteraction: false },
@@ -882,7 +969,8 @@
                     if (
                         link.getAttribute('target') === '_blank' || 
                         hrefAttribute.startsWith('mailto:') || 
-                        targetUrl.split('#')[0] === currentUrl
+                        targetUrl.split('#')[0] === currentUrl ||
+                        link.closest('#mobile-menu') // Skip transition on mobile menu to avoid double-firing
                     ) {
                         return;
                     }
