@@ -53,6 +53,7 @@
             padding: 0 24px;
         }
 
+        /* --- Glass Navbar & Mobile Menu --- */
         nav {
             position: fixed;
             top: 0;
@@ -67,14 +68,16 @@
         .nav-content {
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
         .logo-link {
             flex: 0 0 auto;
             display: flex;
             align-items: center;
             gap: 15px;
-            padding-right: 40px;
             text-decoration: none;
+            position: relative;
+            z-index: 1001;
         }
         .nav-logo {
             height: 50px;
@@ -92,13 +95,12 @@
             color: var(--accent-gold);
             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
+
+        /* Desktop Links */
         .nav-links {
-            flex: 1;
             display: flex;
-            justify-content: space-evenly;
+            gap: 40px;
             align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
         }
         .nav-links a {
             color: var(--text-main);
@@ -114,6 +116,69 @@
             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-main);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background-color: var(--accent-gold);
+        }
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background-color: var(--accent-gold);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 999;
+        }
+        .mobile-menu.active {
+            right: 0;
+        }
+        .mobile-menu a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* --- Committee Hero Layout --- */
         .committee-hero {
             padding-top: 180px;
             padding-bottom: 60px;
@@ -134,6 +199,14 @@
             transform: translateY(-50%);
             z-index: -1;
             pointer-events: none;
+        }
+
+        .committee-copy-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px 52px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
 
         .committee-tag {
@@ -173,14 +246,6 @@
             box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
         }
 
-        .committee-copy-box {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 48px 52px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
         .committee-logo-wrapper {
             background: transparent;
             border: none;
@@ -206,9 +271,10 @@
             mix-blend-mode: screen;
         }
 
+        /* --- Updated Full-Width Info Grid Layout --- */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr; /* Forces two equal columns for EB and BG */
             gap: 20px;
             margin-bottom: 120px;
         }
@@ -220,6 +286,12 @@
             padding: 24px 30px;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
+        
+        /* Forces the Agenda box to span across both columns */
+        .info-box.full-width {
+            grid-column: 1 / -1; 
+        }
+
         .info-box:hover {
             transform: translateY(-5px);
             border-color: rgba(255,255,255,0.2);
@@ -256,12 +328,19 @@
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
+            .hamburger { display: flex; }
             .logo-link { padding-right: 0; }
             .committee-hero { grid-template-columns: 1fr; gap: 40px; padding-top: 140px; }
             .committee-hero h1 { font-size: 3.5rem; }
             .committee-copy-box { padding: 32px 28px; }
             .committee-logo-wrapper { min-height: 250px; padding: 0; }
             .committee-logo-wrapper img { max-height: 280px; transform: translateY(-2px); }
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr; /* Stacks all boxes on top of each other on phones */
+            }
         }
     </style>
 </head>
@@ -273,6 +352,7 @@
                 <img src="./images/MainLogo.png" alt="GWHMUN Logo" class="nav-logo" onerror="this.style.display='none';">
                 <span class="logo-text">GWHMUN</span>
             </a>
+            
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#committees">Committees</a>
@@ -280,28 +360,48 @@
                 <a href="registrations.html">Registrations</a>
                 <a href="index.html#contact">Contact Us</a>
             </div>
+
+            <!-- Hamburger Icon for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
+
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#committees">Committees</a>
+        <a href="resources.html">Resources</a>
+        <a href="registrations.html">Registrations</a>
+        <a href="index.html#contact">Contact Us</a>
+    </div>
 
     <main class="container">
         <div class="committee-hero">
             <div class="committee-copy-box">
                 <span class="committee-tag">Committee Page</span>
+                <!-- CHANGE THIS TITLE FOR EACH COMMITTEE -->
                 <h1>AIPPM</h1>
                 <a href="index.html#committees" class="btn-solid">Back to committees</a>
             </div>
             
             <div class="committee-logo-wrapper">
+                <!-- CHANGE THIS IMAGE SOURCE FOR EACH COMMITTEE -->
                 <img src="./images/AIPPM.png" alt="Committee Logo" onerror="this.style.display='none';">
             </div>
         </div>
 
         <div class="info-grid">
-            <div class="info-box">
+            <!-- Full width Agenda Box -->
+            <div class="info-box full-width">
                 <h4>Agenda</h4>
                 <h3>Coming soon</h3>
             </div>
             
+            <!-- Side by side boxes -->
             <div class="info-box">
                 <h4>Executive Board</h4>
                 <h3>Coming soon</h3>
@@ -322,6 +422,24 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle Script
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Page Transition Script
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('a[href]');
             links.forEach(link => {
@@ -329,9 +447,11 @@
                     const targetUrl = link.href;
                     const currentUrl = window.location.href.split('#')[0];
                     const hrefAttribute = link.getAttribute('href');
-                    if (link.getAttribute('target') === '_blank' || hrefAttribute.startsWith('mailto:') || targetUrl.split('#')[0] === currentUrl) {
+                    
+                    if (link.getAttribute('target') === '_blank' || hrefAttribute.startsWith('mailto:') || targetUrl.split('#')[0] === currentUrl || link.closest('#mobile-menu')) {
                         return;
                     }
+                    
                     e.preventDefault();
                     document.body.classList.add('fade-out');
                     setTimeout(() => { window.location.href = hrefAttribute; }, 400);
