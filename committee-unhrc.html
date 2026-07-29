@@ -342,6 +342,67 @@
                 grid-template-columns: 1fr; /* Stacks all boxes on top of each other on phones */
             }
         }
+    
+        /* --- Executive Board Section --- */
+        .eb-section {
+            margin-bottom: 60px;
+        }
+        .eb-heading {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .eb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .eb-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .eb-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .eb-photo {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 16px;
+            border: 2px solid var(--accent-gold);
+            background: #111;
+            display: block;
+        }
+        .eb-role {
+            font-size: 0.7rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .eb-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+        .eb-writeup {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            text-align: left;
+        }
+
     </style>
 </head>
 <body>
@@ -401,13 +462,35 @@
                 <h3>Deliberating upon the Criminalization and Human Rights Violations Against LGBTQIA+ Individuals, with Special Emphasis on West Asia</h3>
             </div>
             
-            <!-- Side by side boxes -->
-            <div class="info-box">
-                <h4>Executive Board</h4>
-                <h3>Coming soon</h3>
+            <!-- Executive Board Section -->
+        </div>
+
+        <div class="eb-section">
+            <span class="eb-heading">Executive Board</span>
+            <div class="eb-grid">
+                <div class="eb-card">
+                    <img src="./images/eb-placeholder.jpg" alt="Head Chair" class="eb-photo" onerror="this.src='./images/MainLogo.png'">
+                    <span class="eb-role">Head Chair</span>
+                    <div class="eb-name">Gaurav Shetty</div>
+                    <p class="eb-writeup">Writeup coming soon.</p>
+                </div>
+                <div class="eb-card">
+                    <img src="./images/eb-placeholder.jpg" alt="Head Chair" class="eb-photo" onerror="this.src='./images/MainLogo.png'">
+                    <span class="eb-role">Head Chair</span>
+                    <div class="eb-name">Saachi Pathak</div>
+                    <p class="eb-writeup">Writeup coming soon.</p>
+                </div>
+                <div class="eb-card">
+                    <img src="./images/eb-placeholder.jpg" alt="Vice Chair" class="eb-photo" onerror="this.src='./images/MainLogo.png'">
+                    <span class="eb-role">Vice Chair</span>
+                    <div class="eb-name">Muskaan Malik</div>
+                    <p class="eb-writeup">Writeup coming soon.</p>
+                </div>
             </div>
-            
-            <div class="info-box">
+        </div>
+
+        <div class="info-grid">
+            <div class="info-box full-width">
                 <h4>Background Guide</h4>
                 <h3>Coming soon</h3>
             </div>
