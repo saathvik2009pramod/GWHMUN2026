@@ -250,6 +250,94 @@
             box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
         }
 
+        /* --- Itinerary Section --- */
+        .itinerary-section {
+            padding: 40px 0 60px 0;
+        }
+        
+        .itinerary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .day-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        /* Glowing top border for the day cards */
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-glow);
+        }
+
+        .day-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .day-header h3 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: background 0.3s ease, padding-left 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .schedule-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            padding-left: 15px; /* Slight indent on hover */
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .time-block {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            flex: 0 0 45%;
+        }
+
+        .event-block {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: right;
+            flex: 1;
+        }
+
         /* --- Matrices Section --- */
         .matrix-section {
             padding: 40px 0 120px 0;
@@ -365,6 +453,143 @@
                 </p>
                 
                 <a href="https://gwhmun.com/recs/CODEofCONDUCT.pdf" target="_blank" class="btn-solid">Code of Conduct</a>
+            </div>
+        </section>
+
+        <!-- Itinerary Section -->
+        <section id="itinerary" class="itinerary-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h4 style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-size: 0.85rem;">Conference Schedule</h4>
+                <h2 style="font-size: 3rem; font-weight: 900; color: var(--text-main);">Official Itinerary</h2>
+            </div>
+
+            <div class="itinerary-grid">
+                
+                <!-- Day 1 Card -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 1</h3>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">7:30 AM - 8:30 AM</span>
+                        <span class="event-block">Registrations</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">8:30 AM - 10:00 AM</span>
+                        <span class="event-block">Opening Ceremony</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">10:00 AM - 10:30 AM</span>
+                        <span class="event-block">Break</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">10:30 AM - 1:30 PM</span>
+                        <span class="event-block">Committee Session 1</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">12:45 PM - 1:30 PM</span>
+                        <span class="event-block" style="color: var(--text-muted);">Lunch (Batch 1)</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">1:30 PM - 2:15 PM</span>
+                        <span class="event-block" style="color: var(--text-muted);">Lunch (Batch 2)</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">1:30 PM - 4:30 PM</span>
+                        <span class="event-block">Committee Session 2</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">4:45 PM - 5:00 PM</span>
+                        <span class="event-block">Dispersal</span>
+                    </div>
+                </div>
+
+                <!-- Day 2 Card -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 2</h3>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">7:30 AM - 8:15 AM</span>
+                        <span class="event-block">Registration</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">8:15 AM - 10:00 AM</span>
+                        <span class="event-block">Committee Session 3</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">10:00 AM - 10:30 AM</span>
+                        <span class="event-block">Break</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">10:30 AM - 12:45 PM</span>
+                        <span class="event-block">Committee Session 4</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">12:45 PM - 1:30 PM</span>
+                        <span class="event-block" style="color: var(--text-muted);">Lunch 1</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">1:30 PM - 2:15 PM</span>
+                        <span class="event-block" style="color: var(--text-muted);">Lunch 2</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">1:30 PM - 3:30 PM</span>
+                        <span class="event-block">Committee Session 5</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">3:30 PM - 4:00 PM</span>
+                        <span class="event-block">Break</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">4:00 PM - 5:30 PM</span>
+                        <span class="event-block" style="color: var(--accent-gold);">Socials</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">5:30 PM - 5:45 PM</span>
+                        <span class="event-block">Dispersal</span>
+                    </div>
+                </div>
+
+                <!-- Day 3 Card -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 3</h3>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">7:30 AM - 8:30 AM</span>
+                        <span class="event-block">Registration</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">8:30 AM - 10:00 AM</span>
+                        <span class="event-block">Committee Session 6</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">10:00 AM - 10:15 AM</span>
+                        <span class="event-block">Break</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">10:15 AM - 11:30 AM</span>
+                        <span class="event-block">Committee Session 7</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">11:30 AM - 11:45 AM</span>
+                        <span class="event-block" style="color: var(--text-muted);">Transit to Ceremony</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">11:45 AM - 1:10 PM</span>
+                        <span class="event-block">Closing Ceremony</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">1:15 PM - 2:00 PM</span>
+                        <span class="event-block" style="color: var(--text-muted);">Lunch</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time-block">2:00 PM - 2:15 PM</span>
+                        <span class="event-block">Dispersal</span>
+                    </div>
+                </div>
+
             </div>
         </section>
 
