@@ -226,7 +226,7 @@
         }
         .btn-solid:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3); }
 
-        /* --- ITINERARY SECTION --- */
+        /* --- ITINERARY SECTION & DROPDOWN --- */
         .itinerary-section {
             padding: 40px 0 60px 0;
             position: relative;
@@ -244,12 +244,74 @@
             z-index: -1;
             pointer-events: none;
         }
+
+        /* Custom Dropdown Filter UI */
+        .schedule-filter-container {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+        .filter-label {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        .custom-select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 380px;
+        }
+        .custom-select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+            pointer-events: none;
+            font-size: 0.7rem;
+        }
+        .committee-dropdown {
+            background: rgba(20, 20, 22, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 16px 20px;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            appearance: none; 
+            outline: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .committee-dropdown:focus, .committee-dropdown:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+        }
+        .committee-dropdown option {
+            background-color: var(--surface-color);
+            color: var(--text-main);
+        }
+        .committee-dropdown optgroup {
+            background-color: #050505;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
         
         .itinerary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 24px;
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .day-card {
@@ -261,19 +323,33 @@
             padding: 35px 25px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.02);
             position: relative;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden; 
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         .day-card:hover {
+            transform: translateY(-8px);
             border-color: rgba(255,255,255,0.1);
             box-shadow: 0 20px 50px rgba(245, 158, 11, 0.05);
         }
 
-        .day-card::before {
+        /* Hover Animation for Day Cards (Golden Line sliding bottom) */
+        .day-card::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--gradient-glow);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .day-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .day-header {
@@ -471,7 +547,7 @@
         <!-- Page Header -->
         <div class="page-header">
             <h1>Resources</h1>
-            <p>Access essential conference documentation and country matrices. Background guides coming soon</p>
+            <p>Access essential conference documentation and country matrices. Background guides coming soon.</p>
         </div>
 
         <!-- Code of Conduct Section -->
@@ -490,7 +566,33 @@
         <section id="itinerary" class="itinerary-section">
             <div style="text-align: center; margin-bottom: 20px;">
                 <h4 style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-size: 0.85rem;">Conference Schedule</h4>
-                <h2 style="font-size: 3rem; font-weight: 900; color: var(--text-main);"> Itinerary </h2>
+                <h2 style="font-size: 3rem; font-weight: 900; color: var(--text-main);">Official Itinerary</h2>
+            </div>
+
+            <!-- Committee Filter Dropdown -->
+            <div class="schedule-filter-container">
+                <label for="committee-filter" class="filter-label">Select Your Committee for Specific Timings:</label>
+                <div class="custom-select-wrapper">
+                    <select id="committee-filter" class="committee-dropdown">
+                        <option value="all">View All (General Schedule)</option>
+                        <optgroup label="Batch 1 (12:45 PM Lunch)">
+                            <option value="b1">UNGA</option>
+                            <option value="b1">UNEP</option>
+                            <option value="b1">ECOSOC</option>
+                            <option value="b1">CCC: US Senate</option>
+                            <option value="b1">IPC</option>
+                            <option value="b1">AIPPM</option>
+                        </optgroup>
+                        <optgroup label="Batch 2 (1:30 PM Lunch)">
+                            <option value="b2">DISEC</option>
+                            <option value="b2">UNHRC</option>
+                            <option value="b2">UNODC</option>
+                            <option value="b2">CCC</option>
+                            <option value="b2">ICJ</option>
+                            <option value="b2">UNSC</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
 
             <div class="itinerary-grid">
@@ -520,22 +622,22 @@
 
                         <div class="event-card gold-dot">
                             <div class="event-title">Committee Session 1</div>
-                            <div class="event-time">10:30 AM - 1:30 PM</div>
+                            <div class="event-time" id="d1-s1-time">10:30 AM - 1:30 PM</div>
                         </div>
 
-                        <div class="event-card type-minor">
-                            <div class="event-title">Lunch for Batch 1</div>
+                        <div class="event-card type-minor" id="d1-lunch1">
+                            <div class="event-title" id="d1-l1-title">Lunch for Batch 1</div>
                             <div class="event-time">12:45 PM - 1:30 PM</div>
                         </div>
 
-                        <div class="event-card type-minor">
-                            <div class="event-title">Lunch for Batch 2</div>
+                        <div class="event-card type-minor" id="d1-lunch2">
+                            <div class="event-title" id="d1-l2-title">Lunch for Batch 2</div>
                             <div class="event-time">1:30 PM - 2:15 PM</div>
                         </div>
 
                         <div class="event-card gold-dot">
                             <div class="event-title">Committee Session 2</div>
-                            <div class="event-time">1:30 PM - 4:30 PM</div>
+                            <div class="event-time" id="d1-s2-time">1:30 PM - 4:30 PM</div>
                         </div>
 
                         <div class="event-card type-minor">
@@ -570,22 +672,22 @@
 
                         <div class="event-card gold-dot">
                             <div class="event-title">Committee Session 4</div>
-                            <div class="event-time">10:30 AM - 12:45 PM</div>
+                            <div class="event-time" id="d2-s4-time">10:30 AM - 12:45 PM</div>
                         </div>
 
-                        <div class="event-card type-minor">
-                            <div class="event-title">Lunch for batch 1</div>
+                        <div class="event-card type-minor" id="d2-lunch1">
+                            <div class="event-title" id="d2-l1-title">Lunch 1</div>
                             <div class="event-time">12:45 PM - 1:30 PM</div>
                         </div>
 
-                        <div class="event-card type-minor">
-                            <div class="event-title">Lunch for batch 2</div>
+                        <div class="event-card type-minor" id="d2-lunch2">
+                            <div class="event-title" id="d2-l2-title">Lunch 2</div>
                             <div class="event-time">1:30 PM - 2:15 PM</div>
                         </div>
 
                         <div class="event-card gold-dot">
                             <div class="event-title">Committee Session 5</div>
-                            <div class="event-time">1:30 PM - 3:30 PM</div>
+                            <div class="event-time" id="d2-s5-time">1:30 PM - 3:30 PM</div>
                         </div>
 
                         <div class="event-card type-minor">
@@ -634,7 +736,7 @@
                         </div>
 
                         <div class="event-card type-minor">
-                            <div class="event-title"> Break </div>
+                            <div class="event-title">Transit to Closing Ceremony</div>
                             <div class="event-time">11:30 AM - 11:45 AM</div>
                         </div>
 
@@ -659,7 +761,7 @@
 
             <!-- Add to Calendar Button -->
             <div style="text-align: center; margin-top: 50px;">
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=GWHMUN+2026&dates=20260818T020000Z/20260820T084500Z&details=Greenwood+High+MUN+2026+Conference" target="_blank" class="btn-calendar">Add to Calendar</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=GWHMUN+2026&dates=20260818T020000Z/20260820T084500Z&details=Greenwood+High+MUN+2026+Conference" target="_blank" class="btn-calendar">Add to Google Calendar</a>
             </div>
 
         </section>
@@ -705,7 +807,7 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle Script
+        // --- Mobile Menu Logic ---
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-menu a');
@@ -722,7 +824,7 @@
             });
         });
 
-        // Page Transition Script
+        // --- Page Transition Logic ---
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('a[href]');
             links.forEach(link => {
@@ -740,6 +842,94 @@
                     setTimeout(() => { window.location.href = hrefAttribute; }, 400);
                 });
             });
+        });
+
+        // --- Schedule Filtering Logic ---
+        const committeeFilter = document.getElementById('committee-filter');
+        
+        // Data dictionaries for dynamic timing adjustments
+        const scheduleData = {
+            all: {
+                d1s1: "10:30 AM - 1:30 PM",
+                d1s2: "1:30 PM - 4:30 PM",
+                d1l1Title: "Lunch for Batch 1",
+                d1l2Title: "Lunch for Batch 2",
+                d2s4: "10:30 AM - 12:45 PM",
+                d2s5: "1:30 PM - 3:30 PM",
+                d2l1Title: "Lunch 1",
+                d2l2Title: "Lunch 2"
+            },
+            b1: {
+                d1s1: "10:30 AM - 12:45 PM",
+                d1s2: "1:30 PM - 4:30 PM",
+                d1l1Title: "Lunch",
+                d2s4: "10:30 AM - 12:45 PM",
+                d2s5: "1:30 PM - 3:30 PM",
+                d2l1Title: "Lunch"
+            },
+            b2: {
+                d1s1: "10:30 AM - 1:30 PM",
+                d1s2: "2:15 PM - 4:30 PM",
+                d1l2Title: "Lunch",
+                d2s4: "10:30 AM - 1:30 PM",
+                d2s5: "2:15 PM - 3:30 PM",
+                d2l2Title: "Lunch"
+            }
+        };
+
+        committeeFilter.addEventListener('change', function() {
+            const val = this.value;
+
+            if (val === 'all') {
+                // Show both lunch slots
+                document.getElementById('d1-lunch1').style.display = 'block';
+                document.getElementById('d1-lunch2').style.display = 'block';
+                document.getElementById('d2-lunch1').style.display = 'block';
+                document.getElementById('d2-lunch2').style.display = 'block';
+                
+                // Reset times and titles
+                document.getElementById('d1-s1-time').innerText = scheduleData.all.d1s1;
+                document.getElementById('d1-s2-time').innerText = scheduleData.all.d1s2;
+                document.getElementById('d1-l1-title').innerText = scheduleData.all.d1l1Title;
+                document.getElementById('d1-l2-title').innerText = scheduleData.all.d1l2Title;
+                
+                document.getElementById('d2-s4-time').innerText = scheduleData.all.d2s4;
+                document.getElementById('d2-s5-time').innerText = scheduleData.all.d2s5;
+                document.getElementById('d2-l1-title').innerText = scheduleData.all.d2l1Title;
+                document.getElementById('d2-l2-title').innerText = scheduleData.all.d2l2Title;
+
+            } else if (val === 'b1') {
+                // Show only Batch 1 lunches
+                document.getElementById('d1-lunch1').style.display = 'block';
+                document.getElementById('d1-lunch2').style.display = 'none';
+                document.getElementById('d2-lunch1').style.display = 'block';
+                document.getElementById('d2-lunch2').style.display = 'none';
+
+                // Update times for Batch 1 logic
+                document.getElementById('d1-s1-time').innerText = scheduleData.b1.d1s1;
+                document.getElementById('d1-s2-time').innerText = scheduleData.b1.d1s2;
+                document.getElementById('d1-l1-title').innerText = scheduleData.b1.d1l1Title;
+
+                document.getElementById('d2-s4-time').innerText = scheduleData.b1.d2s4;
+                document.getElementById('d2-s5-time').innerText = scheduleData.b1.d2s5;
+                document.getElementById('d2-l1-title').innerText = scheduleData.b1.d2l1Title;
+
+            } else if (val === 'b2') {
+                // Show only Batch 2 lunches
+                document.getElementById('d1-lunch1').style.display = 'none';
+                document.getElementById('d1-lunch2').style.display = 'block';
+                document.getElementById('d2-lunch1').style.display = 'none';
+                document.getElementById('d2-lunch2').style.display = 'block';
+
+                // Update times for Batch 2 logic
+                document.getElementById('d1-s1-time').innerText = scheduleData.b2.d1s1;
+                document.getElementById('d1-s2-time').innerText = scheduleData.b2.d1s2;
+                document.getElementById('d1-l2-title').innerText = scheduleData.b2.d1l2Title;
+
+                document.getElementById('d2-s4-time').innerText = scheduleData.b2.d2s4;
+                document.getElementById('d2-s5-time').innerText = scheduleData.b2.d2s5;
+                document.getElementById('d2-l2-title').innerText = scheduleData.b2.d2l2Title;
+            }
         });
     </script>
 
