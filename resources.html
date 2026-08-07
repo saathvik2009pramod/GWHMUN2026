@@ -333,23 +333,37 @@
             box-shadow: 0 20px 50px rgba(245, 158, 11, 0.05);
         }
 
-        /* Hover Animation for Day Cards (Golden Line sliding bottom) */
-        .day-card::after {
+        /* --- Hover Animation for Day Cards (Golden Line sliding top and bottom) --- */
+        .day-card::after, .day-card::before {
             content: '';
             position: absolute;
-            bottom: 0;
             left: 0;
             width: 100%;
             height: 4px;
             background: var(--accent-gold);
             transform: scaleX(0);
-            transform-origin: right;
             transition: transform 0.4s ease;
+            z-index: 10;
+        }
+
+        .day-card::after {
+            bottom: 0;
+            transform-origin: right;
+        }
+
+        .day-card::before {
+            top: 0;
+            transform-origin: left;
         }
 
         .day-card:hover::after {
             transform: scaleX(1);
             transform-origin: left;
+        }
+
+        .day-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: right;
         }
 
         .day-header {
@@ -438,15 +452,15 @@
             letter-spacing: 0.5px;
         }
 
-        /* Minor Events (De-emphasized) */
+        /* Minor Events (De-emphasized background, but stark text) */
         .event-card.type-minor {
             background: rgba(22, 22, 22, 0.4);
             padding: 12px 20px;
             border-color: rgba(255,255,255,0.02);
         }
-        .event-card.type-minor:hover { border-color: rgba(255,255,255,0.08); }
-        .event-card.type-minor .event-title { font-weight: 500; font-size: 0.95rem; color: var(--text-muted); }
-        .event-card.type-minor .event-time { color: var(--text-muted); }
+        .event-card.type-minor:hover { 
+            border-color: rgba(255,255,255,0.08); 
+        }
 
         .btn-calendar {
             display: inline-block;
@@ -717,7 +731,7 @@
                     <div class="timeline">
                         <div class="event-card gold-dot">
                             <div class="event-title">Registration</div>
-                            <div class="event-time">7:30 AM - 8:30 AM</div>
+                            <div class="event-time">7:30 AM - 8:15 AM</div>
                         </div>
 
                         <div class="event-card gold-dot">
@@ -736,7 +750,7 @@
                         </div>
 
                         <div class="event-card type-minor">
-                            <div class="event-title">Transit to Closing Ceremony</div>
+                            <div class="event-title"> Break </div>
                             <div class="event-time">11:30 AM - 11:45 AM</div>
                         </div>
 
@@ -761,7 +775,7 @@
 
             <!-- Add to Calendar Button -->
             <div style="text-align: center; margin-top: 50px;">
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=GWHMUN+2026&dates=20260818T020000Z/20260820T084500Z&details=Greenwood+High+MUN+2026+Conference" target="_blank" class="btn-calendar">Add to Google Calendar</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=GWHMUN+2026&dates=20260818T020000Z/20260820T084500Z&details=Greenwood+High+MUN+2026+Conference" target="_blank" class="btn-calendar">Add to Calendar</a>
             </div>
 
         </section>
@@ -847,7 +861,6 @@
         // --- Schedule Filtering Logic ---
         const committeeFilter = document.getElementById('committee-filter');
         
-        // Data dictionaries for dynamic timing adjustments
         const scheduleData = {
             all: {
                 d1s1: "10:30 AM - 1:30 PM",
@@ -881,13 +894,11 @@
             const val = this.value;
 
             if (val === 'all') {
-                // Show both lunch slots
                 document.getElementById('d1-lunch1').style.display = 'block';
                 document.getElementById('d1-lunch2').style.display = 'block';
                 document.getElementById('d2-lunch1').style.display = 'block';
                 document.getElementById('d2-lunch2').style.display = 'block';
                 
-                // Reset times and titles
                 document.getElementById('d1-s1-time').innerText = scheduleData.all.d1s1;
                 document.getElementById('d1-s2-time').innerText = scheduleData.all.d1s2;
                 document.getElementById('d1-l1-title').innerText = scheduleData.all.d1l1Title;
@@ -899,13 +910,11 @@
                 document.getElementById('d2-l2-title').innerText = scheduleData.all.d2l2Title;
 
             } else if (val === 'b1') {
-                // Show only Batch 1 lunches
                 document.getElementById('d1-lunch1').style.display = 'block';
                 document.getElementById('d1-lunch2').style.display = 'none';
                 document.getElementById('d2-lunch1').style.display = 'block';
                 document.getElementById('d2-lunch2').style.display = 'none';
 
-                // Update times for Batch 1 logic
                 document.getElementById('d1-s1-time').innerText = scheduleData.b1.d1s1;
                 document.getElementById('d1-s2-time').innerText = scheduleData.b1.d1s2;
                 document.getElementById('d1-l1-title').innerText = scheduleData.b1.d1l1Title;
@@ -915,13 +924,11 @@
                 document.getElementById('d2-l1-title').innerText = scheduleData.b1.d2l1Title;
 
             } else if (val === 'b2') {
-                // Show only Batch 2 lunches
                 document.getElementById('d1-lunch1').style.display = 'none';
                 document.getElementById('d1-lunch2').style.display = 'block';
                 document.getElementById('d2-lunch1').style.display = 'none';
                 document.getElementById('d2-lunch2').style.display = 'block';
 
-                // Update times for Batch 2 logic
                 document.getElementById('d1-s1-time').innerText = scheduleData.b2.d1s1;
                 document.getElementById('d1-s2-time').innerText = scheduleData.b2.d1s2;
                 document.getElementById('d1-l2-title').innerText = scheduleData.b2.d1l2Title;
