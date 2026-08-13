@@ -226,6 +226,40 @@
         }
         .btn-solid:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3); }
 
+        /* --- NEW: Glass to Gradient Buttons --- */
+        .btn-glass-gradient {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 800; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-glass-gradient:hover {
+            background: var(--gradient-glow);
+            border-color: transparent;
+            color: #000000;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+        }
+
+        .grid-container {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 30px;
+        }
+
         /* --- ITINERARY SECTION & DROPDOWN --- */
         .itinerary-section {
             padding: 40px 0 60px 0;
@@ -461,36 +495,6 @@
             transform: scale(1.05);
         }
 
-        /* --- Matrices / BG Guides Grid Section --- */
-        .matrix-section { padding: 40px 0 80px 0; }
-        .committee-matrix-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 20px; 
-            margin-bottom: 60px;
-        }
-        
-        .committee-matrix-link {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .committee-matrix-link:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.1);
-        }
-
         /* --- Footer --- */
         footer { border-top: 1px solid var(--border-color); padding: 80px 0; text-align: center; }
         footer img { height: 50px; opacity: 0.5; margin-bottom: 20px; filter: grayscale(100%); transition: all 0.3s ease; }
@@ -559,25 +563,25 @@
         </section>
 
         <!-- Background Guides Section -->
-        <section id="background-guides" class="matrix-section" style="padding-top: 20px; padding-bottom: 40px;">
-            <div style="text-align: center; margin-bottom: 30px;">
+        <section id="background-guides" style="margin-bottom: 80px;">
+            <div style="text-align: center; margin-bottom: 40px;">
                 <h4 style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-size: 0.85rem;">Committee Preparation</h4>
                 <h3 style="font-size: 2.5rem; font-weight: 700; color: var(--text-main);">Background Guides</h3>
             </div>
             
-            <div class="committee-matrix-grid">
-                <a href="https://drive.google.com/file/d/1CTP_BDaqTJMMyD2M5H_36Og_K0h5rDfH/view?usp=sharing" target="_blank" class="committee-matrix-link">UNGA</a>
-                <a href="https://drive.google.com/file/d/18wxC0TXi9giydKFA3yG5TziDX1VPHHUy/view?usp=sharing" target="_blank" class="committee-matrix-link">UNEP</a>
-                <a href="https://drive.google.com/file/d/1-_EmGasUKDlKXZwkyYZTlPAx-JskeguT/view?usp=sharing" target="_blank" class="committee-matrix-link">ECOSOC</a>
-                <a href="https://drive.google.com/file/d/1Yhn0ICKr3wmsDoE5G-7MWbPbAoK8-lfU/view?usp=sharing" target="_blank" class="committee-matrix-link">CCC</a>
-                <a href="https://drive.google.com/file/d/1bCnKa_QWrNLK_TeTF-zR3qxYJhsFBA_A/view?usp=sharing" target="_blank" class="committee-matrix-link">CCC: US Senate</a>
-                <a href="https://drive.google.com/file/d/1KFB-gqYr1Srq4RQurVNumOLhjGSdT3NQ/view?usp=sharing" target="_blank" class="committee-matrix-link">IPC</a>
-                <a href="https://drive.google.com/file/d/1AjBKUyfPECa-drrqotAysdY8cGVhp4U_/view?usp=sharing" target="_blank" class="committee-matrix-link">AIPPM</a>
-                <a href="https://drive.google.com/file/d/1QlfrYCO5ME28f5F5fm0yxWVx2ZDzV9hJ/view?usp=sharing" target="_blank" class="committee-matrix-link">DISEC</a>
-                <a href="https://drive.google.com/file/d/1_PKrSiJQB38yIGR19ZpLgjhg4yforpjr/view?usp=sharing" target="_blank" class="committee-matrix-link">UNHRC</a>
-                <a href="https://drive.google.com/file/d/1fdm7ZrccIHTmy99tcGSwk4C0vn_Knt6j/view?usp=sharing" target="_blank" class="committee-matrix-link">UNODC</a>
-                <a href="https://drive.google.com/file/d/1kplnfh3TwXetFT0mDvEAJ9WBvW8-PiBM/view?usp=sharing" target="_blank" class="committee-matrix-link">ICJ</a>
-                <a href="https://drive.google.com/file/d/1NTgwg4ZXd378V8bmTVPNgrob2Sh9xlyg/view?usp=sharing" target="_blank" class="committee-matrix-link">UNSC</a>
+            <div class="grid-container">
+                <a href="https://drive.google.com/file/d/1CTP_BDaqTJMMyD2M5H_36Og_K0h5rDfH/view?usp=sharing" target="_blank" class="btn-glass-gradient">UNGA</a>
+                <a href="https://drive.google.com/file/d/18wxC0TXi9giydKFA3yG5TziDX1VPHHUy/view?usp=sharing" target="_blank" class="btn-glass-gradient">UNEP</a>
+                <a href="https://drive.google.com/file/d/1-_EmGasUKDlKXZwkyYZTlPAx-JskeguT/view?usp=sharing" target="_blank" class="btn-glass-gradient">ECOSOC</a>
+                <a href="https://drive.google.com/file/d/1Yhn0ICKr3wmsDoE5G-7MWbPbAoK8-lfU/view?usp=sharing" target="_blank" class="btn-glass-gradient">CCC</a>
+                <a href="https://drive.google.com/file/d/1bCnKa_QWrNLK_TeTF-zR3qxYJhsFBA_A/view?usp=sharing" target="_blank" class="btn-glass-gradient">CCC: US Senate</a>
+                <a href="https://drive.google.com/file/d/1KFB-gqYr1Srq4RQurVNumOLhjGSdT3NQ/view?usp=sharing" target="_blank" class="btn-glass-gradient">IPC</a>
+                <a href="https://drive.google.com/file/d/1AjBKUyfPECa-drrqotAysdY8cGVhp4U_/view?usp=sharing" target="_blank" class="btn-glass-gradient">AIPPM</a>
+                <a href="https://drive.google.com/file/d/1QlfrYCO5ME28f5F5fm0yxWVx2ZDzV9hJ/view?usp=sharing" target="_blank" class="btn-glass-gradient">DISEC</a>
+                <a href="https://drive.google.com/file/d/1_PKrSiJQB38yIGR19ZpLgjhg4yforpjr/view?usp=sharing" target="_blank" class="btn-glass-gradient">UNHRC</a>
+                <a href="https://drive.google.com/file/d/1fdm7ZrccIHTmy99tcGSwk4C0vn_Knt6j/view?usp=sharing" target="_blank" class="btn-glass-gradient">UNODC</a>
+                <a href="https://drive.google.com/file/d/1kplnfh3TwXetFT0mDvEAJ9WBvW8-PiBM/view?usp=sharing" target="_blank" class="btn-glass-gradient">ICJ</a>
+                <a href="https://drive.google.com/file/d/1NTgwg4ZXd378V8bmTVPNgrob2Sh9xlyg/view?usp=sharing" target="_blank" class="btn-glass-gradient">UNSC</a>
             </div>
         </section>
 
@@ -802,19 +806,19 @@
             <!-- Committee Wise Grid -->
             <h3 style="font-size: 1.5rem; margin-bottom: 25px; text-align: center; font-weight: 700;">Committee-Specific Matrices</h3>
             
-            <div class="committee-matrix-grid">
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=814392709#gid=814392709" target="_blank" class="committee-matrix-link">DISEC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=522146301#gid=522146301" target="_blank" class="committee-matrix-link">ECOSOC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=676032252#gid=676032252" target="_blank" class="committee-matrix-link">UNGA</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1282252040#gid=1282252040" target="_blank" class="committee-matrix-link">UNSC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=2008701290#gid=2008701290" target="_blank" class="committee-matrix-link">UNHRC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1955933343#gid=1955933343" target="_blank" class="committee-matrix-link">ICJ</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1906368618#gid=1906368618" target="_blank" class="committee-matrix-link">UNEP</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=0#gid=0" target="_blank" class="committee-matrix-link">AIPPM</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1945399203#gid=1945399203" target="_blank" class="committee-matrix-link">CCC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1989739457#gid=1989739457" target="_blank" class="committee-matrix-link">IPC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1861787796#gid=1861787796" target="_blank" class="committee-matrix-link">UNODC</a>
-                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1217719474#gid=1217719474" target="_blank" class="committee-matrix-link">CCC-US Senate</a>
+            <div class="grid-container">
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=814392709#gid=814392709" target="_blank" class="btn-glass-gradient">DISEC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=522146301#gid=522146301" target="_blank" class="btn-glass-gradient">ECOSOC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=676032252#gid=676032252" target="_blank" class="btn-glass-gradient">UNGA</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1282252040#gid=1282252040" target="_blank" class="btn-glass-gradient">UNSC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=2008701290#gid=2008701290" target="_blank" class="btn-glass-gradient">UNHRC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1955933343#gid=1955933343" target="_blank" class="btn-glass-gradient">ICJ</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1906368618#gid=1906368618" target="_blank" class="btn-glass-gradient">UNEP</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=0#gid=0" target="_blank" class="btn-glass-gradient">AIPPM</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1945399203#gid=1945399203" target="_blank" class="btn-glass-gradient">CCC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1989739457#gid=1989739457" target="_blank" class="btn-glass-gradient">IPC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1861787796#gid=1861787796" target="_blank" class="btn-glass-gradient">UNODC</a>
+                <a href="https://docs.google.com/spreadsheets/d/1qTd75MiddY1Kp9vUF7egLLMqHDgycbGJV6eD2wANl7I/edit?gid=1217719474#gid=1217719474" target="_blank" class="btn-glass-gradient">CCC-US Senate</a>
             </div>
         </section>
     </main>
