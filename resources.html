@@ -226,6 +226,20 @@
         }
         .btn-solid:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3); }
 
+        .bg-guides-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .bg-guides-grid .btn-solid {
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            min-width: 140px;
+            text-align: center;
+        }
+
         /* --- ITINERARY SECTION & DROPDOWN --- */
         .itinerary-section {
             padding: 40px 0 60px 0;
@@ -333,7 +347,7 @@
             box-shadow: 0 20px 50px rgba(245, 158, 11, 0.05);
         }
 
-        /* --- Hover Animation for Day Cards (Golden Line sliding top and bottom) --- */
+        /* Hover Animation */
         .day-card::after, .day-card::before {
             content: '';
             position: absolute;
@@ -345,26 +359,10 @@
             transition: transform 0.4s ease;
             z-index: 10;
         }
-
-        .day-card::after {
-            bottom: 0;
-            transform-origin: right;
-        }
-
-        .day-card::before {
-            top: 0;
-            transform-origin: left;
-        }
-
-        .day-card:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .day-card:hover::before {
-            transform: scaleX(1);
-            transform-origin: right;
-        }
+        .day-card::after { bottom: 0; transform-origin: right; }
+        .day-card::before { top: 0; transform-origin: left; }
+        .day-card:hover::after { transform: scaleX(1); transform-origin: left; }
+        .day-card:hover::before { transform: scaleX(1); transform-origin: right; }
 
         .day-header {
             text-align: center;
@@ -405,7 +403,7 @@
             border-radius: 2px;
         }
 
-        /* Event Cards (Stacked format) */
+        /* Event Cards */
         .event-card {
             position: relative;
             background: #161616;
@@ -419,8 +417,6 @@
             transform: translateY(-3px) translateX(2px);
             border-color: rgba(255,255,255,0.12);
         }
-
-        /* Timeline Dot */
         .event-card::before {
             content: '';
             position: absolute;
@@ -432,13 +428,10 @@
             background: var(--text-muted);
             z-index: 2;
         }
-
-        /* Active/Gold Dot */
         .event-card.gold-dot::before {
             background: var(--accent-gold);
             box-shadow: 0 0 8px var(--accent-gold);
         }
-
         .event-title {
             font-weight: 700;
             font-size: 1.05rem;
@@ -451,8 +444,6 @@
             font-variant-numeric: tabular-nums;
             letter-spacing: 0.5px;
         }
-
-        /* Minor Events (De-emphasized background, but stark text) */
         .event-card.type-minor {
             background: rgba(22, 22, 22, 0.4);
             padding: 12px 20px;
@@ -561,7 +552,7 @@
         <!-- Page Header -->
         <div class="page-header">
             <h1>Resources</h1>
-            <p>Access essential conference documentation and country matrices. Background guides coming soon.</p>
+            <p>Access essential conference documentation and background guides.</p>
         </div>
 
         <!-- Code of Conduct Section -->
@@ -573,6 +564,32 @@
                     Please ensure you have read and understood the full Code of Conduct before the conference begins to ensure a safe and productive environment for everyone.
                 </p>
                 <a href="https://gwhmun.com/recs/CODEofCONDUCT.pdf" target="_blank" class="btn-solid">Code of Conduct</a>
+            </div>
+        </section>
+
+        <!-- Background Guides Section -->
+        <section id="background-guides" style="margin-bottom: 40px;">
+            <div class="feature-card centered">
+                <h4 style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-size: 0.85rem;">Committee Preparation</h4>
+                <h3 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px;">Background Guides</h3>
+                <p style="color: var(--text-muted); margin-bottom: 35px; font-size: 1.1rem;">
+                    Access and download the official background guides for all committees below.
+                </p>
+                
+                <div class="bg-guides-grid">
+                    <a href="https://drive.google.com/file/d/1CTP_BDaqTJMMyD2M5H_36Og_K0h5rDfH/view?usp=sharing" target="_blank" class="btn-solid">UNGA</a>
+                    <a href="https://drive.google.com/file/d/18wxC0TXi9giydKFA3yG5TziDX1VPHHUy/view?usp=sharing" target="_blank" class="btn-solid">UNEP</a>
+                    <a href="https://drive.google.com/file/d/1-_EmGasUKDlKXZwkyYZTlPAx-JskeguT/view?usp=sharing" target="_blank" class="btn-solid">ECOSOC</a>
+                    <a href="https://drive.google.com/file/d/1Yhn0ICKr3wmsDoE5G-7MWbPbAoK8-lfU/view?usp=sharing" target="_blank" class="btn-solid">CCC</a>
+                    <a href="https://drive.google.com/file/d/1bCnKa_QWrNLK_TeTF-zR3qxYJhsFBA_A/view?usp=sharing" target="_blank" class="btn-solid">CCC: US Senate</a>
+                    <a href="https://drive.google.com/file/d/1KFB-gqYr1Srq4RQurVNumOLhjGSdT3NQ/view?usp=sharing" target="_blank" class="btn-solid">IPC</a>
+                    <a href="https://drive.google.com/file/d/1AjBKUyfPECa-drrqotAysdY8cGVhp4U_/view?usp=sharing" target="_blank" class="btn-solid">AIPPM</a>
+                    <a href="https://drive.google.com/file/d/1QlfrYCO5ME28f5F5fm0yxWVx2ZDzV9hJ/view?usp=sharing" target="_blank" class="btn-solid">DISEC</a>
+                    <a href="https://drive.google.com/file/d/1_PKrSiJQB38yIGR19ZpLgjhg4yforpjr/view?usp=sharing" target="_blank" class="btn-solid">UNHRC</a>
+                    <a href="https://drive.google.com/file/d/1fdm7ZrccIHTmy99tcGSwk4C0vn_Knt6j/view?usp=sharing" target="_blank" class="btn-solid">UNODC</a>
+                    <a href="https://drive.google.com/file/d/1kplnfh3TwXetFT0mDvEAJ9WBvW8-PiBM/view?usp=sharing" target="_blank" class="btn-solid">ICJ</a>
+                    <a href="https://drive.google.com/file/d/1NTgwg4ZXd378V8bmTVPNgrob2Sh9xlyg/view?usp=sharing" target="_blank" class="btn-solid">UNSC</a>
+                </div>
             </div>
         </section>
 
@@ -750,7 +767,7 @@
                         </div>
 
                         <div class="event-card type-minor">
-                            <div class="event-title"> Break </div>
+                            <div class="event-title"> Transit to Closing Ceremony </div>
                             <div class="event-time">11:30 AM - 11:45 AM</div>
                         </div>
 
